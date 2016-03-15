@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="webprog.Site1" %>
+<!DOCTYPE html>
+<!-- Introductiepagina -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TMPH00036</title>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="menu-wrap">
+      <div class="menu">
+        <ul>
+          <!-- Change this into Menu-Control -->
+          <li><a href="index.aspx" class="active">home</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="clearing"></div>
+    <div class="header">
+      <div class="logo">
+        <h1>Voetbal<span>Tickets</span></h1>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+      </div>
+    </div>
+</body>
+</html>
