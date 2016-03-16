@@ -9,22 +9,49 @@ namespace webprog
 {
     public partial class clubs : System.Web.UI.Page
     {
-        private ClubService clubService = new ClubService();
-        String[] teams = { "Club Brugge", "AA Gent", "Anderlecht", "Oostende", "Racing Genk", "Zulte Waregem" };
+        private ClubService c;
+        private List<Club> teams;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            c = new ClubService();
+            teams = c.getClubs();
+
             String club = Request.QueryString["club"];
             int selected = 0;
 
-            if(club == null || club == "" || Int32.TryParse(club, out selected) == false || selected >=teams.Length)
+            if(club == null || club == "" || Int32.TryParse(club, out selected) == false || selected >=teams.Count)
             {
-                clubSelected.InnerHtml = teams[0];
+                clubSelected.InnerHtml = "<h1>" + teams.ElementAt(0).name + "</h1>";
+                clubSelected.InnerHtml += "<p>" + teams.ElementAt(0).description + "</p>";
             }
             else
             {
-                clubSelected.InnerHtml = teams[selected];
+                clubSelected.InnerHtml = "<h1>" + teams.ElementAt(selected).name + "</h1>";
+                clubSelected.InnerHtml += "<p>" + teams.ElementAt(selected).description + "</p>";
             }
+
+            if (!Page.IsPostBack)
+            {
+                fillDDL(teams);
+            }
+        }
+
+        private void fillDDL(List<Club> t)
+        {
+            ddlClubs.DataSource = t;
+            ddlClubs.DataTextField = "name";
+            ddlClubs.DataValueField = "id";
+            ddlClubs.DataBind();
+        }
+
+        protected void ddlClubs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var nameValues = HttpUtility.ParseQueryString(Request.QueryString.ToString());
+            nameValues.Set("club", ddlClubs.SelectedItem.Value);
+            string url = Request.Url.AbsolutePath;
+            string updatedQueryString = "?" + nameValues.ToString();
+            Response.Redirect(url + updatedQueryString);
         }
     }
 }

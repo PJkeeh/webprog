@@ -18,7 +18,7 @@ namespace webprog
             cnn = new SqlConnection(dbLoc);
             List<Club> retVal = new List<Club>();
 
-            String strSQL = "SELECT * FROM teams;";
+            String strSQL = "SELECT * FROM team;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
