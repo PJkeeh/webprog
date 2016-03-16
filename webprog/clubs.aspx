@@ -4,6 +4,9 @@
         
     </div>
     <form runat="server">
-        <asp:DropDownList ID="ddlClubs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClubs_SelectedIndexChanged"></asp:DropDownList>
+        <asp:DropDownList ID="ddlClubs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClubs_SelectedIndexChanged" AppendDataBoundItems="True">
+            <asp:ListItem>Selecteer een team:</asp:ListItem>
+
+        </asp:DropDownList>
     </form>
 </asp:Content>
