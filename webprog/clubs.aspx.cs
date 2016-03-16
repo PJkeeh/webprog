@@ -9,6 +9,7 @@ namespace webprog
 {
     public partial class clubs : System.Web.UI.Page
     {
+        private ClubService clubService = new ClubService();
         String[] teams = { "Club Brugge", "AA Gent", "Anderlecht", "Oostende", "Racing Genk", "Zulte Waregem" };
 
         protected void Page_Load(object sender, EventArgs e)

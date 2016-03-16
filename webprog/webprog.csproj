@@ -81,6 +81,8 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\club.cs" />
+    <Compile Include="DAO\clubDAO.cs" />
     <Compile Include="clubs.aspx.cs">
       <DependentUpon>clubs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +90,7 @@
     <Compile Include="clubs.aspx.designer.cs">
       <DependentUpon>clubs.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BLL\clubService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
