@@ -16,6 +16,7 @@
         <ul>
           <!-- Change this into Menu-Control -->
           <li><a href="index.aspx" class="active">home</a></li>
+          <li><a href="clubs.aspx" class="active">Clubs</a></li>
         </ul>
       </div>
     </div>
@@ -24,10 +25,12 @@
     <div class="header">
       <div class="logo">
         <h1>Voetbal<span>Tickets</span></h1>
+      </div>
+    </div>
+    <div class="page" >
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-      </div>
-    </div>
+     </div>
 </body>
 </html>
