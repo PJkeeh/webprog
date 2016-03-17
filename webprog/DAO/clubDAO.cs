@@ -48,9 +48,16 @@ namespace webprog
                 id = Convert.ToInt32(reader["team_id"]),
                 name = Convert.ToString(reader["team_name"]),
                 description = Convert.ToString(reader["team_description"]),
+                stadion = setStadion(Convert.ToInt32(reader["team_stadion_id"]))
             };
 
             return retVal;
+        }
+
+        private Stadion setStadion(int id)
+        {
+            StadionDAO stadionDAO = new StadionDAO();
+            return stadionDAO.getStadion(id);
         }
     }
 

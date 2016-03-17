@@ -77,10 +77,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clubs.aspx" />
+    <Content Include="stadion.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\stadionService.cs" />
+    <Compile Include="DAO\stadionDAO.cs" />
+    <Compile Include="Domain\Stadion.cs" />
     <Compile Include="Domain\club.cs" />
     <Compile Include="DAO\clubDAO.cs" />
     <Compile Include="clubs.aspx.cs">
@@ -105,6 +109,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="stadion.aspx.cs">
+      <DependentUpon>stadion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="stadion.aspx.designer.cs">
+      <DependentUpon>stadion.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

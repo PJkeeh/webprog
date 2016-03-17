@@ -2,15 +2,13 @@
 
 namespace webprog
 {
-    public class Club
+    public class Stadion
     {
         public int id { get; set; }
 
         public String name { get; set; }
 
         public String description { get; set; }
-
-        public Stadion stadion { get; set; }
 
         public override string ToString()
         {

@@ -24,11 +24,13 @@ namespace webprog
             {
                 clubSelected.InnerHtml = "<h1>" + teams.ElementAt(0).name + "</h1>";
                 clubSelected.InnerHtml += "<p>" + teams.ElementAt(0).description + "</p>";
+                clubSelected.InnerHtml += "<p>" + teams.ElementAt(0).stadion.name + "</p>";
             }
             else
             {
                 clubSelected.InnerHtml = "<h1>" + teams.ElementAt(selected).name + "</h1>";
                 clubSelected.InnerHtml += "<p>" + teams.ElementAt(selected).description + "</p>";
+                clubSelected.InnerHtml += "<p>" + teams.ElementAt(selected).stadion.name + "</p>";
             }
 
             if (!Page.IsPostBack)
