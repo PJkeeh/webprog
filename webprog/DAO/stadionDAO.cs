@@ -11,6 +11,8 @@ namespace webprog
         private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
 
+        SqlDataReader reader;
+
         public StadionDAO() { }
 
         public List<Stadion> getAll()
@@ -25,7 +27,7 @@ namespace webprog
             try
             {
                 cnn.Open();
-                SqlDataReader reader = com.ExecuteReader();
+                reader = com.ExecuteReader();
 
                 // Call Read before accessing data
                 while (reader.Read())
@@ -34,12 +36,16 @@ namespace webprog
                 }
 
                 // Call close when done reading
-                reader.Close();
                 return retVal;
             }
             catch (Exception ex)
             {
                 throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
             }
         }
 

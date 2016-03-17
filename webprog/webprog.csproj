@@ -84,7 +84,7 @@
   <ItemGroup>
     <Compile Include="BLL\stadionService.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
-    <Compile Include="Domain\Stadion.cs" />
+    <Compile Include="Domain\stadion.cs" />
     <Compile Include="Domain\club.cs" />
     <Compile Include="DAO\clubDAO.cs" />
     <Compile Include="clubs.aspx.cs">
