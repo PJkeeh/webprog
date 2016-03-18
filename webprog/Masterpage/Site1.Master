@@ -5,18 +5,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>TMPH00036</title>
+    <title>Voetbaltickets</title>
     <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css' />
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
-    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-2.2.2.min.js"></script>
+    <script src="../js/navbar.js"></script>
 </head>
 <body>
     <div class="menu-wrap">
       <div class="menu">
         <ul>
           <!-- Change this into Menu-Control -->
-          <li><a href="index.aspx" class="active">home</a></li>
-          <li><a href="clubs.aspx" class="active">Clubs</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/index.aspx") %>">home</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/register.aspx") %>">Register</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/clubs.aspx") %>">Clubs</a></li>
         </ul>
       </div>
     </div>

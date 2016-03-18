@@ -66,8 +66,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\styles.css" />
+    <Content Include="js\jquery-2.2.2.min.js" />
+    <Content Include="js\navbar.js" />
     <Content Include="packages.config" />
-    <Content Include="Site1.Master" />
+    <Content Include="Masterpage\Site1.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -77,13 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clubs.aspx" />
+    <Content Include="register.aspx" />
     <Content Include="stadion.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\loginService.cs" />
     <Compile Include="BLL\stadionService.cs" />
+    <Compile Include="DAO\loginDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
+    <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\stadion.cs" />
     <Compile Include="Domain\club.cs" />
     <Compile Include="DAO\clubDAO.cs" />
@@ -96,11 +103,11 @@
     </Compile>
     <Compile Include="BLL\clubService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site1.Master.cs">
+    <Compile Include="Masterpage\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Site1.Master.designer.cs">
+    <Compile Include="Masterpage\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
@@ -109,6 +116,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
     </Compile>
     <Compile Include="stadion.aspx.cs">
       <DependentUpon>stadion.aspx</DependentUpon>
