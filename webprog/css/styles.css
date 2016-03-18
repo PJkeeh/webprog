@@ -45,3 +45,9 @@ HEADER CLASSES
 
 .social{ float:right; margin-top:45px;}
 .social ul li{list-style:none; float:left; margin-left:15px;}
+
+/*------------------------------------------------
+REGISTER PAGE
+------------------------------------------------*/
+.registerLabel{width:133px; display: inline-block;}
+.errorLabel{color:red;}
