@@ -13,5 +13,38 @@ namespace webprog
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            String login = txtLogin.Text;
+            String password = txtPassword.Text;
+
+            if(login.Equals(""))
+            {
+                lblError.InnerHtml = "<p>Geef een gebruikersnaam en wachtwoord in.</p>";
+            }
+            else if(!passwordCorrect(login, password))
+            {
+                //lblError.InnerHtml = "<p>De gebruikersnaam en het wachtwoord komen niet overeen.</p>";
+            }
+            else
+            {
+                Session["username"] = login;
+
+                //TODO change into previous page
+                Response.Redirect("index.aspx");
+            }
+        }
+
+        private Boolean passwordCorrect(String login, String password)
+        {
+            Boolean retVal = false;
+            LoginService loginService = new LoginService();
+
+            lblError.InnerHtml = loginService.getLogin(login).password;
+            retVal = loginService.checkLogin(login, password);
+
+            return retVal;
+        }
     }
 }
