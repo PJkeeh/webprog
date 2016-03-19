@@ -20,22 +20,29 @@ namespace webprog
             String club = Request.QueryString["club"];
             int selected = 0;
 
-            if(club == null || club == "" || Int32.TryParse(club, out selected) == false || selected >=teams.Count)
+            if (teams.Count == 0)
             {
-                clubSelected.InnerHtml = "<h1>" + teams.ElementAt(0).name + "</h1>";
-                clubSelected.InnerHtml += "<p>" + teams.ElementAt(0).description + "</p>";
-                clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(0).stadion.id + "'>" + teams.ElementAt(0).stadion.name + ".</a>";
+                clubSelected.InnerHtml = "<p>Er zijn geen teams gevonden.</p>";
             }
             else
             {
-                clubSelected.InnerHtml = "<h1>" + teams.ElementAt(selected).name + "</h1>";
-                clubSelected.InnerHtml += "<p>" + teams.ElementAt(selected).description + "</p>";
-                clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(selected).stadion.id + "'>" + teams.ElementAt(selected).stadion.name + ".</a>";
-            }
+                if (club == null || club == "" || Int32.TryParse(club, out selected) == false || selected >= teams.Count)
+                {
+                    clubSelected.InnerHtml = "<h1>" + teams.ElementAt(0).name + "</h1>";
+                    clubSelected.InnerHtml += "<p>" + teams.ElementAt(0).description + "</p>";
+                    clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(0).stadion.id + "'>" + teams.ElementAt(0).stadion.name + ".</a>";
+                }
+                else
+                {
+                    clubSelected.InnerHtml = "<h1>" + teams.ElementAt(selected).name + "</h1>";
+                    clubSelected.InnerHtml += "<p>" + teams.ElementAt(selected).description + "</p>";
+                    clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(selected).stadion.id + "'>" + teams.ElementAt(selected).stadion.name + ".</a>";
+                }
 
-            if (!Page.IsPostBack)
-            {
-                fillDDL(teams);
+                if (!Page.IsPostBack)
+                {
+                    fillDDL(teams);
+                }
             }
         }
 
