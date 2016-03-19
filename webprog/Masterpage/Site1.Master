@@ -16,10 +16,11 @@
     <div class="menu-wrap">
       <div class="menu">
         <ul>
-          <!-- Change this into Menu-Control -->
           <li><a href="<%= Page.ResolveUrl("~/index.aspx") %>">home</a></li>
-          <li><a href="<%= Page.ResolveUrl("~/register.aspx") %>">Register</a></li>
           <li><a href="<%= Page.ResolveUrl("~/clubs.aspx") %>">Clubs</a></li>
+        </ul>
+
+        <ul  runat="server" id="login">
         </ul>
       </div>
     </div>
