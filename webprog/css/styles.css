@@ -1,54 +1,212 @@
-/*-------------------------------------------------
-GLOBALS CLASSES 
--------------------------------------------------*/
-*{padding:0; margin:0;}
-body{font-family: 'Droid Serif', serif; font-size:12px; color:#9b9e9a; background:#e1ece7;}
-img{border:none;}
-h1{ font-size:18px; color:#d13f31; font-family: 'Oswald', sans-serif; font-weight:normal; text-transform:uppercase;}
-h2{ font-size:14px; color:#1f7872; font-family: 'Droid Serif', serif; font-weight:normal;}
-P{ line-height:20px;}
-a{text-decoration:none; color:#1f7872;}
-a:hover{color:#d13f31;}
-/*-------------------------------------------------
-GENERAL CLASSES
--------------------------------------------------*/
-.mar-top30{margin-top:30px;}
-.mar-top20{margin-top:20px;}
-.mar-right30{margin-right:30px;}
-.mar-bottom20{margin-bottom:20px;}
-.float-left{ float:left;}
-.float-right{ float:right;}
-.clearing { clear:both;}
-.panel{ background:#ffffff;}
-.title{}
-.content{}
-.button a{text-decoration:none; display:block; width:70px; height:30px; background:#1f7872; color:#ffffff; font-family: 'Oswald', sans-serif; line-height:30px; text-align:center; text-transform:uppercase;}
-.button a:hover{ background:#d13f31;}
-.page{ width:960px; margin:0 auto;overflow:hidden;}
-/*-------------------------------------------------
-MENU CLASSES
--------------------------------------------------*/
-.menu-wrap{ overflow:hidden; background:#1a202c;}
-.menu{margin:0 auto; width:960px; background:#d13f31; height:85px; margin-top:80px;}
-.menu ul li{list-style:none; float:left; width:auto;}
-.menu ul li a{ display:block; height:85px; line-height:85px; padding-left:30px; padding-right:30px; font-size:14px; font-family: 'Oswald', sans-serif; color:#ffffff; border-right:#dd503f solid 1px; text-transform:uppercase;}
-.menu ul li a:hover{background:#e1ece7; color:#1a202c;}
-.menu ul li a.active{background:#e1ece7; color:#1a202c;}
-#login{float:right;}
+/*
+    GLOBALS CLASSES 
+*/
+* {
+    padding: 0;
+    margin: 0;
+}
 
-/*-------------------------------------------------
-HEADER CLASSES
--------------------------------------------------*/
-.header{margin:0 auto; width:960px; height:120px;}
-.logo{width:300px; float:left; line-height:120px;}
-.logo h1{ font-size:32px; color:#d13f31; font-weight:normal;}
-.logo h1 span{ color:#1a202c;}
+body {
+    font-family: 'Droid Serif', serif;
+    font-size: 12px;
+    color: #9b9e9a;
+    background: #e1ece7;
+}
 
-.social{ float:right; margin-top:45px;}
-.social ul li{list-style:none; float:left; margin-left:15px;}
+img {
+    border: none;
+}
 
-/*------------------------------------------------
-REGISTER PAGE
-------------------------------------------------*/
-.registerLabel{width:133px; display: inline-block;}
-.errorLabel{color:red;}
+h1 {
+    font-size: 18px;
+    color: #d13f31;
+    font-family: 'Oswald', sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 14px;
+    color: #1f7872;
+    font-family: 'Droid Serif', serif;
+    font-weight: normal;
+}
+
+P {
+    line-height: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #1f7872;
+}
+
+    a:hover {
+        color: #d13f31;
+    }
+/*
+    GENERAL CLASSES
+*/
+.mar-top30 {
+    margin-top: 30px;
+}
+
+.mar-top20 {
+    margin-top: 20px;
+}
+
+.mar-right30 {
+    margin-right: 30px;
+}
+
+.mar-bottom20 {
+    margin-bottom: 20px;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clearing {
+    clear: both;
+}
+
+.panel {
+    background: #ffffff;
+}
+
+.title {
+}
+
+.content {
+}
+
+.button a {
+    text-decoration: none;
+    display: block;
+    width: 70px;
+    height: 30px;
+    background: #1f7872;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+    .button a:hover {
+        background: #d13f31;
+    }
+
+.page {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+/*
+    MENU CLASSES
+*/
+.menu-wrap {
+    overflow: hidden;
+    background: #1a202c;
+}
+
+.menu {
+    margin: 0 auto;
+    width: 960px;
+    background: #d13f31;
+    height: 85px;
+    margin-top: 80px;
+}
+
+    .menu ul li {
+        list-style: none;
+        float: left;
+        width: auto;
+    }
+
+        .menu ul li a {
+            display: block;
+            height: 85px;
+            line-height: 85px;
+            padding-left: 30px;
+            padding-right: 30px;
+            font-size: 14px;
+            font-family: 'Oswald', sans-serif;
+            color: #ffffff;
+            border-right: #dd503f solid 1px;
+            text-transform: uppercase;
+        }
+
+            .menu ul li a:hover {
+                background: #e1ece7;
+                color: #1a202c;
+            }
+
+            .menu ul li a.active {
+                background: #e1ece7;
+                color: #1a202c;
+            }
+
+#login {
+    float: right;
+}
+
+/*
+    HEADER CLASSES
+*/
+.header {
+    margin: 0 auto;
+    width: 960px;
+    height: 120px;
+}
+
+.logo {
+    width: 300px;
+    float: left;
+    line-height: 120px;
+}
+
+    .logo h1 {
+        font-size: 32px;
+        color: #d13f31;
+        font-weight: normal;
+    }
+
+        .logo h1 span {
+            color: #1a202c;
+        }
+
+.social {
+    float: right;
+    margin-top: 45px;
+}
+
+    .social ul li {
+        list-style: none;
+        float: left;
+        margin-left: 15px;
+    }
+
+/*
+    REGISTER PAGE
+*/
+.registerLabel {
+    width: 133px;
+    display: inline-block;
+}
+
+.errorLabel {
+    color: red;
+}
+
+/*
+    Login Page
+*/
+.loginWidth{
+    width: 200px;
+}

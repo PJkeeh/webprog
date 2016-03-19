@@ -32,10 +32,8 @@ namespace webprog
                         else
                         {
                             lblPasswordError.InnerHtml = "";
-
-#pragma warning disable CS0618 // Type or member is obsolete
-                            loginService.registerLogin(txtLogin.Text, FormsAuthentication.HashPasswordForStoringInConfigFile(txtPassword.Text, "SHA1"));
-#pragma warning restore CS0618 // Type or member is obsolete
+                            
+                            loginService.registerLogin(txtLogin.Text, txtPassword.Text);
                             Response.Redirect("index.aspx");
                         }
                     }

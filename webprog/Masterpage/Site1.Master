@@ -21,6 +21,7 @@
         </ul>
 
         <ul  runat="server" id="login">
+            <li><a href="logout.aspx">Logout</a></li>
         </ul>
       </div>
     </div>

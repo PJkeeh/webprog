@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
 
 namespace webprog
 {
@@ -28,11 +29,21 @@ namespace webprog
             return logins;
         }
 
+        public Boolean checkLogin(String login, String password)
+        {
+            Boolean retVal = false;
+            string hash = hashPassword(password);
+
+            retVal = getLogin(login).password.Trim().Equals(hash.Trim());
+
+            return retVal;
+        }
+
         public Login registerLogin(String login, String password)
         {
             LoginDAO dao = new LoginDAO();
-
-            return dao.setLogin(login, password);
+            string hash = hashPassword(password);
+            return dao.setLogin(login, hash);
             
         }
 
@@ -49,6 +60,13 @@ namespace webprog
                 );
             }
             return retVal;
+        }
+
+        private String hashPassword(String password)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            return FormsAuthentication.HashPasswordForStoringInConfigFile(password, "SHA1");
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

@@ -15,9 +15,11 @@ namespace webprog
 
             if (Session["username"] == null || ((String)Session["username"]).Equals("") || loginService.getLogin((String)Session["username"]) == null)
             {
-                login.InnerHtml = login.InnerHtml 
-                                + "<li><a id = \"register\" href = \"" + Page.ResolveUrl("~/register.aspx") + "\" > Register </a></li>"
-                                + "<li><a id=\"login\" href=\"" + Page.ResolveUrl("~/login.aspx") + "\">Login</a></li>";
+                if (!Page.IsPostBack)
+                {
+                    login.InnerHtml ="<li><a id = \"register\" href = \"" + Page.ResolveUrl("~/register.aspx") + "\" > Register </a></li>"
+                                   + "<li><a id=\"login\" href=\"" + Page.ResolveUrl("~/login.aspx") + "\">Login</a></li>";
+                }
             }
         }
     }
