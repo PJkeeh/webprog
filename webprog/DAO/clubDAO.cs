@@ -45,6 +45,39 @@ namespace webprog
             }
         }
 
+        public Club getClub(int id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Club retVal = new Club();
+
+            String strSQL = "SELECT * FROM team where team_id = @team_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal=CreateClub(reader); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
         private Club CreateClub(SqlDataReader reader)
         {
             Club retVal = new Club
