@@ -8,12 +8,12 @@
     </p>
     <p>
        <label class="registerLabel">Wachtwoord:</label>
-       <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+       <asp:TextBox TextMode="password" ID="txtPassword" runat="server"></asp:TextBox>
        <label id="lblPasswordError" runat="server" class="errorLabel"></label>
     </p>
     <p>
        <label class="registerLabel">Wachtwoord herhalen:</label>
-       <asp:TextBox ID="txtPassword2" runat="server"></asp:TextBox>
+       <asp:TextBox TextMode="password" ID="txtPassword2" runat="server"></asp:TextBox>
     </p>
     <p>
         <asp:Button ID="btnRegister" runat="server" Text="Button" OnClick="btnRegister_Click" />
