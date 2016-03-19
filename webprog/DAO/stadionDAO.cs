@@ -75,7 +75,7 @@ namespace webprog
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Something went wrong ", ex);
+                throw new ApplicationException(ex.ToString(), ex);
             }
         }
 
