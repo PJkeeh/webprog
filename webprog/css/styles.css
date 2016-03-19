@@ -193,6 +193,20 @@ a {
     }
 
 /*
+    CONTENT
+*/
+
+.rightContent{
+    width:33%;
+    float:right;
+}
+
+.leftContent{
+    width="66%";
+    float:left;
+}
+
+/*
     REGISTER PAGE
 */
 .registerLabel {

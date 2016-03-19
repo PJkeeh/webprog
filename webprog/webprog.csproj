@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
@@ -88,11 +89,21 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
     <Compile Include="BLL\stadionService.cs" />
+    <Compile Include="Calendar.aspx.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Calendar.aspx.designer.cs">
+      <DependentUpon>Calendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
     <Compile Include="Domain\login.cs" />
+    <Compile Include="Domain\match.cs" />
     <Compile Include="Domain\stadion.cs" />
     <Compile Include="Domain\club.cs" />
     <Compile Include="DAO\clubDAO.cs" />
