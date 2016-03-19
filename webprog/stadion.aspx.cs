@@ -18,14 +18,18 @@ namespace webprog
 
             if (id == null|| id == "" || Int32.TryParse(id, out stadion_id) == false)
             {
-                stadion_id = 1;
+                stadion_id = 0;
             }
 
             s = new StadionService();
             Stadion stadion = s.getStadion(stadion_id);
 
-            stadionSelected.InnerHtml = "<h1>" + stadion.name + "</h1>";
-            stadionSelected.InnerHtml += "<p>" + stadion.description + "</p>";
+            if (stadion == null)
+                stadionSelected.InnerHtml = "<p>Stadion niet gevonden</p>";
+            else { 
+                stadionSelected.InnerHtml = "<h1>" + stadion.name + "</h1>";
+                stadionSelected.InnerHtml += "<p>" + stadion.description + "</p>";
+            }
         }
     }
 }
