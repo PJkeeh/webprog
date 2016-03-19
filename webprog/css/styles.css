@@ -34,6 +34,7 @@ MENU CLASSES
 .menu ul li a{ display:block; height:85px; line-height:85px; padding-left:30px; padding-right:30px; font-size:14px; font-family: 'Oswald', sans-serif; color:#ffffff; border-right:#dd503f solid 1px; text-transform:uppercase;}
 .menu ul li a:hover{background:#e1ece7; color:#1a202c;}
 .menu ul li a.active{background:#e1ece7; color:#1a202c;}
+#login{float:right;}
 
 /*-------------------------------------------------
 HEADER CLASSES
