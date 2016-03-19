@@ -69,6 +69,7 @@
     <Content Include="css\styles.css" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
+    <Content Include="login.aspx" />
     <Content Include="packages.config" />
     <Content Include="Masterpage\Site1.Master" />
     <None Include="Web.Debug.config">
@@ -102,6 +103,13 @@
       <DependentUpon>clubs.aspx</DependentUpon>
     </Compile>
     <Compile Include="BLL\clubService.cs" />
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Masterpage\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
