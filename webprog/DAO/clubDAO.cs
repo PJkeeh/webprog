@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using webprog.Domain;
+using webprog.DAO;
 
-namespace webprog
+namespace webprog.DAO
 {
 
     public class ClubDAO
@@ -39,9 +41,10 @@ namespace webprog
             {
                 throw new ApplicationException("Something went wrong ", ex);
             }
-            finally{
-                reader.Close();
+            finally
+            {
                 cnn.Close();
+                reader.Close();
             }
         }
 

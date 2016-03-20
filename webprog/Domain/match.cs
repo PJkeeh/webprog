@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace webprog
+namespace webprog.Domain
 {
     public class Match
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace webprog
+namespace webprog.Domain
 {
     public class Stadion
     {

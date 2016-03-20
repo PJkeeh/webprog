@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using webprog.Domain;
 
-namespace webprog
+namespace webprog.DAO
 {
 
     public class MatchDAO

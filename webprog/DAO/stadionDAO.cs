@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using webprog.Domain;
 
-namespace webprog
+namespace webprog.DAO
 {
 
     public class StadionDAO
@@ -61,7 +62,7 @@ namespace webprog
             try
             {
                 cnn.Open();
-                SqlDataReader reader = com.ExecuteReader();
+                reader = com.ExecuteReader();
 
                 // Call Read before accessing data
                 while (reader.Read())
@@ -70,12 +71,16 @@ namespace webprog
                 }
 
                 // Call close when done reading
-                reader.Close();
                 return retVal;
             }
             catch (Exception ex)
             {
                 throw new ApplicationException(ex.ToString(), ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
             }
         }
 

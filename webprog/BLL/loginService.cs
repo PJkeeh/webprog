@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
+using webprog.Domain;
+using webprog.DAO;
 
-namespace webprog
+namespace webprog.BLL
 {
     public class LoginService
     {

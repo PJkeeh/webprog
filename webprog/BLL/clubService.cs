@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using webprog.Domain;
+using webprog.DAO;
 
-namespace webprog
+namespace webprog.BLL
 {
     public class ClubService
     {
