@@ -11,6 +11,16 @@ namespace webprog
         {
         }
 
+        public List<Match> getAllComing()
+        {
+            return dao.getAllComing();
+        }
+
+        public List<Match> getAllComingMatchesOfTeam(int id)
+        {
+            return dao.getAllComingOfTeam(id);
+        }
+
         public List<Match> getAllMatches()
         {
             return dao.getAll();

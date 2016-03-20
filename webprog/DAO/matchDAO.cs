@@ -45,6 +45,38 @@ namespace webprog
             }
         }
 
+        public List<Match> getAllComing()
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Match> retVal = new List<Match>();
+
+            String strSQL = "SELECT * FROM match where match_date >= cast(GETDATE() as date);";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateMatch(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
         public List<Match> getAllOfTeam(int id)
         {
             cnn = new SqlConnection(dbLoc);
@@ -78,6 +110,38 @@ namespace webprog
             }
         }
 
+        public List<Match> getAllComingOfTeam(int id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Match> retVal = new List<Match>();
+
+            String strSQL = "SELECT * FROM match where (match_hometeam_id = @team OR match_awayteam_id = @team) AND match_date >= cast(GETDATE() as date);";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team", id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateMatch(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
 
         private Match CreateMatch(SqlDataReader reader)
         {
