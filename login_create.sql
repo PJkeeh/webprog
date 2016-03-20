@@ -1,0 +1,22 @@
+USE [webprog]
+GO
+
+/****** Object:  Table [dbo].[login]    Script Date: 20/03/2016 17:54:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[login](
+	[login] [nchar](50) NOT NULL,
+	[password] [nchar](255) NOT NULL,
+ CONSTRAINT [PK_login] PRIMARY KEY CLUSTERED 
+(
+	[login] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
