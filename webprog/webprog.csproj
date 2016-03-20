@@ -102,8 +102,10 @@
     <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
+    <Compile Include="DAO\ticketDAO.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
+    <Compile Include="Domain\ticket.cs" />
     <Compile Include="Domain\stadion.cs" />
     <Compile Include="Domain\club.cs" />
     <Compile Include="DAO\clubDAO.cs" />
@@ -115,6 +117,8 @@
       <DependentUpon>clubs.aspx</DependentUpon>
     </Compile>
     <Compile Include="BLL\clubService.cs" />
+    <Compile Include="Domain\ticket_team.cs" />
+    <Compile Include="Domain\ticket_type.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
