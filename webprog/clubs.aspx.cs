@@ -32,12 +32,12 @@ namespace webprog
                 if (club == null || club.Equals("") || Int32.TryParse(club, out selected) == false || selected >= teams.Count)
                 {
                     fillClubDiv(0);
-                    matches = m.getAllMatchesOfTeam(0);
+                    matches = m.getAllComingMatchesOfTeam(0);
                 }
                 else
                 {
                     fillClubDiv(selected);
-                    matches = m.getAllMatchesOfTeam(selected);
+                    matches = m.getAllComingMatchesOfTeam(selected);
                 }
 
                 fillMatchesDiv(matches);
