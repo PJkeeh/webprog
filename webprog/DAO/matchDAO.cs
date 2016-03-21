@@ -20,7 +20,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Match> retVal = new List<Match>();
 
-            String strSQL = "SELECT * FROM match;";
+            String strSQL = "SELECT * FROM match order by match_date;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
