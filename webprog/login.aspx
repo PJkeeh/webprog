@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Site1.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="webprog.login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
+    <form runat="server" class="content">
         <label id="lblError" runat="server" class="errorLabel"></label>
         <p>
             <label class="loginWidth">Login:</label><asp:TextBox ID="txtLogin" runat="server"></asp:TextBox>

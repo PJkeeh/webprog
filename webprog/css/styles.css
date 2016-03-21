@@ -47,6 +47,15 @@ a {
 /*
     GENERAL CLASSES
 */
+.content{
+    background-color:white;
+    -webkit-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
+    box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
+    margin:34px;
+    padding:15px;
+    color:darkslategrey;
+}
 .mar-top30 {
     margin-top: 30px;
 }
@@ -222,5 +231,6 @@ a {
     Login Page
 */
 .loginWidth{
-    width: 200px;
+    width: 70px;
+    display:inline-block;
 }
