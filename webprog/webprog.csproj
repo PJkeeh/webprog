@@ -102,12 +102,14 @@
     <Compile Include="calendar.aspx.designer.cs">
       <DependentUpon>calendar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAO\AbonnementDAO.cs" />
     <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
     <Compile Include="DAO\ticketDAO.cs" />
     <Compile Include="DAO\ticket_teamDAO.cs" />
     <Compile Include="DAO\ticket_typeDAO.cs" />
+    <Compile Include="Domain\abonnement.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
     <Compile Include="Domain\ticket.cs" />
