@@ -94,6 +94,7 @@
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
     <Compile Include="BLL\stadionService.cs" />
+    <Compile Include="BLL\aboService.cs" />
     <Compile Include="BLL\ticketService.cs" />
     <Compile Include="calendar.aspx.cs">
       <DependentUpon>calendar.aspx</DependentUpon>
