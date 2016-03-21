@@ -111,6 +111,41 @@ namespace webprog.DAO
             }
         }
 
+        public Match getMatch(int id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Match retVal = null;
+
+            String strSQL = "SELECT * FROM match where match_id = @match_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@match_id", id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                if (reader.Read())
+                {
+                    retVal = CreateMatch(reader);
+                }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
         public List<Match> getAllComingOfTeam(int id)
         {
             cnn = new SqlConnection(dbLoc);
