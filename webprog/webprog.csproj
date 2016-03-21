@@ -70,6 +70,7 @@
     <Content Include="css\styles.css" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
+    <Content Include="js\remove_empty.js" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="packages.config" />
