@@ -52,7 +52,8 @@ a {
     -webkit-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
     -moz-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
     box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
-    margin:34px;
+    margin:25px;
+    margin-left:0px;
     padding:15px;
     color:darkslategrey;
 }
@@ -211,7 +212,7 @@ a {
 }
 
 .leftContent{
-    width="66%";
+    width:66%;
     float:left;
 }
 
