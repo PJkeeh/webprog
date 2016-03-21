@@ -24,9 +24,10 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket> retVal = new List<Ticket>();
 
-            String strSQL = "SELECT * FROM ticket;";
+            String strSQL = "SELECT * FROM ticket where match_id = @match_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@match_id", id);
 
             try
             {
@@ -166,7 +167,7 @@ namespace webprog.DAO
                 match = new MatchDAO().getMatch(Convert.ToInt32(reader["match_id"])),
                 ticket_type = new Ticket_typeDAO().getTicket_type(Convert.ToInt32(reader["ticket_type"])),
             };
-            return null;
+            return retVal;
         }
     }
 }

@@ -55,11 +55,7 @@ namespace webprog.BLL
                 int sold = 0;
                 for (int j = 0; j < tickets.Count; j++)
                 {
-                    if (tickets.ElementAt(j) == null)
-                    {
-                        break;
-                    }
-                    else if (tickets.ElementAt(j).ticket_type == ticket_team.ElementAt(i).ticket_type)
+                    if (tickets.ElementAt(j).ticket_type.id == ticket_team.ElementAt(i).ticket_type.id)
                     {
                         sold++;
                         break;
