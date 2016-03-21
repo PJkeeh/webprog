@@ -49,6 +49,8 @@ namespace webprog.BLL
             TicketDAO ticketDAO = new TicketDAO();
             List<Ticket> tickets = ticketDAO.getAllOfMatch(m);
 
+            //Todo add abo
+
             for (int i = 0; i < ticket_team.Count; i++)
             {
                 int total = ticket_team.ElementAt(i).amount;
