@@ -12,7 +12,7 @@ namespace webprog.Domain
         public Club awayTeam { get; set; }
         public DateTime date { get; set; }
 
-        public String toString()
+        public override string ToString()
         {
             return id.ToString() + " " + homeTeam.name + " - " + awayTeam.name + " " + date.ToString();
         }
