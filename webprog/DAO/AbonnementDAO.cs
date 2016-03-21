@@ -15,7 +15,73 @@ namespace webprog.DAO
         SqlDataReader reader;
 
         public AbonnementDAO() { }
-        
+
+        public List<Abonnement> getTicket_type(int type_id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Abonnement> retVal = new List<Abonnement>();
+
+            String strSQL = "SELECT * FROM abonnement where abo__ticket_type=@abo__ticket_type;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@abo__ticket_type", type_id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateAbonnement(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+
+        public List<Abonnement> getAllOfTeam(int team_id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Abonnement> retVal = new List<Abonnement>();
+
+            String strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", team_id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateAbonnement(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+
         public List<Abonnement> getAll()
         {
             cnn = new SqlConnection(dbLoc);
