@@ -66,7 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Calendar.aspx" />
+    <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
@@ -85,6 +85,7 @@
     <Content Include="clubs.aspx" />
     <Content Include="register.aspx" />
     <Content Include="stadion.aspx" />
+    <Content Include="ticketView.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
   </ItemGroup>
@@ -92,17 +93,20 @@
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
     <Compile Include="BLL\stadionService.cs" />
-    <Compile Include="Calendar.aspx.cs">
-      <DependentUpon>Calendar.aspx</DependentUpon>
+    <Compile Include="BLL\ticketService.cs" />
+    <Compile Include="calendar.aspx.cs">
+      <DependentUpon>calendar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Calendar.aspx.designer.cs">
-      <DependentUpon>Calendar.aspx</DependentUpon>
+    <Compile Include="calendar.aspx.designer.cs">
+      <DependentUpon>calendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
     <Compile Include="DAO\ticketDAO.cs" />
+    <Compile Include="DAO\ticket_teamDAO.cs" />
+    <Compile Include="DAO\ticket_typeDAO.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
     <Compile Include="Domain\ticket.cs" />
@@ -119,6 +123,12 @@
     <Compile Include="BLL\clubService.cs" />
     <Compile Include="Domain\ticket_team.cs" />
     <Compile Include="Domain\ticket_type.cs" />
+    <Compile Include="masterpageFunctions.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pageFunctions.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,6 +171,13 @@
     </Compile>
     <Compile Include="stadion.aspx.designer.cs">
       <DependentUpon>stadion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticketView.aspx.cs">
+      <DependentUpon>ticketView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticketView.aspx.designer.cs">
+      <DependentUpon>ticketView.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

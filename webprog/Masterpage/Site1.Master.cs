@@ -8,13 +8,13 @@ using webprog.BLL;
 
 namespace webprog
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class Site1 :masterpageFunctions
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             LoginService loginService = new LoginService();
 
-            if (Session["username"] == null || ((String)Session["username"]).Equals("") || loginService.getLogin((String)Session["username"]) == null)
+            if (loggedIn())
             {
                 if (!Page.IsPostBack)
                 {
