@@ -29,11 +29,12 @@ namespace webprog
                     int match_id = Convert.ToInt32(Request.QueryString["match"]);
 
                     Match m = matchService.getMatch(match_id);
-
                     Boolean sale_closed = m.date.Date < DateTime.Today.Date;
                     Boolean sale_too_soon = m.date.Date.AddMonths(-1) >= DateTime.Today.Date;
 
                     List<int[]> intTickets = matchService.getTicketsAvailable(m);
+
+                    content.InnerHtml = intTickets.Count.ToString();
 
                     if (sale_closed)
                     {
