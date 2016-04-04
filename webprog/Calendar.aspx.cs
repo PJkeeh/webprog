@@ -43,7 +43,7 @@ namespace webprog
                 {
                     if (i == 5)
                         break;
-                    matchesID.InnerHtml += "<h2>" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</h2>";
+                    matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
                     matchesID.InnerHtml += "<p>" + matches.ElementAt(i).date.ToShortDateString() + "</p>";
                 }
             }
