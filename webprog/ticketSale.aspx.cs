@@ -88,7 +88,7 @@ namespace webprog
                     });
                 }
 
-                Response.Redirect("ticketView.aspx?match=" + m.id);
+                Response.Redirect("shoppingcart.aspx");
             }
         }
     }
