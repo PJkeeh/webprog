@@ -3,6 +3,7 @@
     <div id="content" runat="server">
         <div class="content">
             <h1 id="content_title" runat="server"></h1>
+            <div id="ticketStats" runat="server"></div>
         </div>
         <div id ="matchOver" class="content" runat="server">
             <h1 id="matchOver_title" runat ="server"></h1>
