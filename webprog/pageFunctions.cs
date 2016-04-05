@@ -8,9 +8,14 @@ namespace webprog
         public Boolean loggedIn()
         {
             LoginService loginService = new LoginService();
-            return !(Session["username"] != null
+            return (Session["username"] != null
                 && !((string)Session["username"]).Equals("")
                 && loginService.getLogin((string)Session["username"]) != null);
+        }
+
+        public String getLogin()
+        {
+            return (string)Session["username"];
         }
     }
 }
