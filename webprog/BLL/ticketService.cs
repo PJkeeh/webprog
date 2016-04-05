@@ -21,6 +21,11 @@ namespace webprog.BLL
             return new Ticket_typeDAO().getAllTicket_types();
         }
 
+        public int getAmountOfTicket_types()
+        {
+            return getTicket_types().Count;
+        }
+
         public Ticket_type getTicket_type(int id)
         {
             return new Ticket_typeDAO().getTicket_type(id);
