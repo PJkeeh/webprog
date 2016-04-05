@@ -86,6 +86,7 @@
     <Content Include="clubs.aspx" />
     <Content Include="register.aspx" />
     <Content Include="stadion.aspx" />
+    <Content Include="ticketSale.aspx" />
     <Content Include="ticketView.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
@@ -175,6 +176,13 @@
     </Compile>
     <Compile Include="stadion.aspx.designer.cs">
       <DependentUpon>stadion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ticketSale.aspx.cs">
+      <DependentUpon>ticketSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ticketSale.aspx.designer.cs">
+      <DependentUpon>ticketSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="ticketView.aspx.cs">
       <DependentUpon>ticketView.aspx</DependentUpon>
