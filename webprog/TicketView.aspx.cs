@@ -33,9 +33,7 @@ namespace webprog
                     Boolean sale_too_soon = m.date.Date.AddMonths(-1) >= DateTime.Today.Date;
 
                     List<int[]> intTickets = matchService.getTicketsAvailable(m);
-
-                    content.InnerHtml = intTickets.Count.ToString();
-
+                    
                     if (sale_closed)
                     {
                         content.InnerHtml = "";
@@ -70,9 +68,17 @@ namespace webprog
                             ticketSaleClosed.InnerHtml = "";
                             matchOver.InnerHtml = "";
 
-                            content.InnerHtml += "<p>" + ticketService.getTicket_type(intTickets.ElementAt(i)[0]).name + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</p>";
-                            content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
+                            if (intTickets.ElementAt(i)[1] == intTickets.ElementAt(i)[2])
+                            {
+                                ticketStats.InnerHtml += "<p>" + ticketService.getTicket_type(intTickets.ElementAt(i)[0]).name + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</p>";
+                            } else
+                            {
+                                Ticket_type tt = ticketService.getTicket_type(intTickets.ElementAt(i)[0]);
+                                
+                                ticketStats.InnerHtml += "<p><a href=\"ticketSale.aspx?ticket="+tt.id+"&match="+m.id+"\">" + tt.name + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
+                            }
                         }
+                        content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
                     }
                 }
             }
