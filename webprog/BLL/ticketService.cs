@@ -26,6 +26,11 @@ namespace webprog.BLL
             return new Ticket_typeDAO().getTicket_type(id);
         }
 
+        public List<Ticket> getTicketsOfLoginOnMatch(String login, Match m)
+        {
+            return dao.getAllOfLoginFromMatch(login, m);
+        }
+
         internal string getTicket_type(object p)
         {
             throw new NotImplementedException();
