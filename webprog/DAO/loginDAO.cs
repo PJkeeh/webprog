@@ -105,6 +105,7 @@ namespace webprog.DAO
 
         private Login CreateLogin(SqlDataReader reader)
         {
+            //Cleanup This code
             String name = null;
             if(reader["name"] != null)
             {
@@ -115,7 +116,7 @@ namespace webprog.DAO
                 login = Convert.ToString(reader["login"]),
                 password = Convert.ToString(reader["password"]),
                 name = name,
-                email = Convert.ToString(reader["email"])
+                email = Convert.ToString(reader["e-mail"])
             };
 
             return retVal;
