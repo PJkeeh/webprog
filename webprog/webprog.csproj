@@ -85,6 +85,7 @@
   <ItemGroup>
     <Content Include="clubs.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="shoppingcart.aspx" />
     <Content Include="stadion.aspx" />
     <Content Include="ticketSale.aspx" />
     <Content Include="ticketView.aspx" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="shoppingcart.aspx.cs">
+      <DependentUpon>shoppingcart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="shoppingcart.aspx.designer.cs">
+      <DependentUpon>shoppingcart.aspx</DependentUpon>
     </Compile>
     <Compile Include="stadion.aspx.cs">
       <DependentUpon>stadion.aspx</DependentUpon>
