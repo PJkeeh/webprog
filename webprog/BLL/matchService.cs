@@ -39,6 +39,24 @@ namespace webprog.BLL
             return dao.getAllOfTeam(id);
         }
 
+        public int[] getTicketsAvailableOfTicketType(Match m, int tt_id)
+        {
+            int[] retVal = { };
+            List<int[]> ta = getTicketsAvailable(m);
+            for (int i = 0; i < ta.Count; i++)
+            {
+                if (ta[i][0] == tt_id)
+                {
+                    retVal = ta[i];
+                }
+            }
+            return retVal; ;
+        }
+        public int[] getTicketsAvailableOfTicketType(Match m, Ticket_type tt)
+        {
+            return getTicketsAvailableOfTicketType(m, tt.id);
+        }
+
         public List<int[]> getTicketsAvailable(Match m)
         {
             List<int[]> retVal = new List<int[]>();
