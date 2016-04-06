@@ -77,19 +77,42 @@ namespace webprog
                 Login l = new LoginService().getLogin(getLogin());
 
                 List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
-                for (int i = 0; i < wannaBuy; i++)
-                {
-                    shoppingCart.Add(new Ticket
-                    {
-                        id = 0,
-                        login = l,
-                        match = m,
-                        ticket_type = tt
-                    });
-                }
 
-                Response.Redirect("shoppingcart.aspx");
+                if (getOfMatch(shoppingCart, m).Count + wannaBuy + numBought <= maxBuy)
+                {
+
+                    for (int i = 0; i < wannaBuy; i++)
+                    {
+                        shoppingCart.Add(new Ticket
+                        {
+                            id = 0,
+                            login = l,
+                            match = m,
+                            ticket_type = tt
+                        });
+                    }
+
+                    Response.Redirect("shoppingcart.aspx");
+                }
+                else {
+                    //Show error
+                }
             }
+        }
+
+        private List<Ticket> getOfMatch(List<Ticket> input, Match m)
+        {
+            List<Ticket> retVal = new List<Ticket>();
+
+            for (int i = 0; i < input.Count; i++)
+            {
+                if (input[i].match.id == m.id)
+                {
+                    retVal.Add(input[i]);
+                }
+            }
+
+            return retVal;
         }
     }
 }
