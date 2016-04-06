@@ -27,12 +27,13 @@ namespace webprog
 
                 for (int i = 0; i < matches.Count; i++)
                 {
+                    cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name + " " + matches[i].date.ToShortDateString() + "</h2>";
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
                         int amount = 0;
                         for (int j = 0; j < shoppingCart.Count; j++)
                         {
-                            if (matches[i] == shoppingCart[j].match)
+                            if (matches[i].id == shoppingCart[j].match.id)
                             {
                                 if (shoppingCart[j].ticket_type.id == ticketTypes[k].id)
                                 {
@@ -41,7 +42,21 @@ namespace webprog
                             }
                         }
                         if (amount != 0)
-                            cart.InnerHtml += "<p><b>" + amount + "</b> tickets voor <b>" + ticketTypes[k].name + "</b></p>";
+                        {
+                            Club club = new Club();
+                            if (ticketTypes[k].hometeam)
+                            {
+                                club = matches[i].homeTeam;
+                            }
+                            else
+                            {
+                                club = matches[i].homeTeam;
+                            }
+                            if(amount == 1)
+                                cart.InnerHtml += "<p><b>" + amount + "</b> ticket voor <b>" + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
+                            else
+                                cart.InnerHtml += "<p><b>" + amount + "</b> tickets voor " + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
+                        }
                     }
                 }
             }
@@ -50,10 +65,19 @@ namespace webprog
         private List<Match> countMatches(List<Ticket> cart)
         {
             List<Match> retVal = new List<Match>();
-
+            
             for (int i = 0; i < cart.Count; i++)
             {
-                if (!retVal.Contains(cart[i].match))
+                Boolean contains = false;
+                for(int j = 0; j < retVal.Count; j++)
+                {
+                    if(retVal[j].id == cart[i].match.id)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+                if (!contains)
                 {
                     retVal.Add(cart[i].match);
                 }
