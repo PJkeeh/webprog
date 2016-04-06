@@ -35,7 +35,7 @@ namespace webprog
                     Match m = matchService.getMatch(Convert.ToInt32(Request.QueryString["match"]));
                     List<int[]> tickNum = new MatchService().getTicketsAvailable(m);
 
-                    contentTitle.InnerHtml = m.homeTeam + " - " + m.awayTeam + "(" + m.date.ToLongDateString() + ")";
+                    contentTitle.InnerHtml = m.homeTeam.name + "- " + m.awayTeam.name + "(" + m.date.ToLongDateString() + ")";
 
                     if (tickNum[tt.id][1] < tickNum[tt.id][2])
                     {
@@ -59,13 +59,23 @@ namespace webprog
             Match m = new MatchService().getMatch(Convert.ToInt32(Request.QueryString["match"]));
             Ticket_type tt = new TicketService().getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
 
-            if (wannaBuy + numBought > maxBuy)
+            int available = new MatchService().getTicketsAvailableOfTicketType(m, tt)[1];
+
+            if(wannaBuy > maxBuy)
             {
-                //Show an error
+                errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> tickets kopen.";
             }
-            else if (new MatchService().getTicketsAvailableOfTicketType(m, tt)[1] + wannaBuy > new MatchService().getTicketsAvailableOfTicketType(m, tt)[2])
+            else if (wannaBuy + numBought > maxBuy)
             {
-                //Show an error
+                errorMessage.InnerHtml = "Je hebt al "
+                    + numBought + " tickets gekocht. Als je nog "
+                    + wannaBuy + " tickets bijkoopt, heb je "
+                    + (numBought + wannaBuy - maxBuy) + "tickets teveel. Een persoon mag slechts <b>"
+                    + maxBuy + "</b> tickets kopen.";
+            }
+            else if (available + wannaBuy > new MatchService().getTicketsAvailableOfTicketType(m, tt)[2])
+            {
+                errorMessage.InnerHtml = "Er zijn slechts " + available + " tickets beschikbaar.";
             }
             else
             {
@@ -78,7 +88,9 @@ namespace webprog
 
                 List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
 
-                if (getOfMatch(shoppingCart, m).Count + wannaBuy + numBought <= maxBuy)
+                int toBuy = getOfMatch(shoppingCart, m).Count;
+
+                if (toBuy + wannaBuy + numBought <= maxBuy)
                 {
 
                     for (int i = 0; i < wannaBuy; i++)
@@ -95,7 +107,11 @@ namespace webprog
                     Response.Redirect("shoppingcart.aspx");
                 }
                 else {
-                    //Show error
+                    errorMessage.InnerHtml = "Je hebt al "
+                        + numBought + " tickets gekocht voor deze match. Momenteel bevinden zich al "
+                        + toBuy + " tickets in je winkelwagen. Bij het aankopen van nog "
+                        + wannaBuy + " tickets wordt het maximum van "
+                        + maxBuy + " per  match overschreden.";
                 }
             }
         }

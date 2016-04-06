@@ -6,6 +6,7 @@
         <div id="content" runat="server">
         </div>
         <form id="buyForm" runat="server">
+            <p class=".errorLabel" id="errorMessage" runat="server"></p>
             <input id="amount" type="number" runat="server" />
             <br />
             <asp:Button ID="ticket_add" runat="server" Text="Toevoegen aan winkelmandje" OnClick="ticket_add_Click" />

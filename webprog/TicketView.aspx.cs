@@ -33,7 +33,7 @@ namespace webprog
                     Boolean sale_too_soon = m.date.Date.AddMonths(-1) >= DateTime.Today.Date;
 
                     List<int[]> intTickets = matchService.getTicketsAvailable(m);
-                    
+
                     if (sale_closed)
                     {
                         content.InnerHtml = "";
@@ -58,7 +58,7 @@ namespace webprog
                     {
                         content.InnerHtml = "";
                         matchOver.InnerHtml = "";
-                    
+
                         ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
                         ticketSaleClosed_OpenDate.InnerHtml = m.date.Date.AddMonths(-1).ToShortDateString();
                     }
@@ -68,14 +68,24 @@ namespace webprog
                             ticketSaleClosed.InnerHtml = "";
                             matchOver.InnerHtml = "";
 
+                            Ticket_type tt = ticketService.getTicket_type(intTickets.ElementAt(i)[0]);
+
+                            Club club = new Club();
+                            if (tt.hometeam)
+                            {
+                                club = m.homeTeam;
+                            }
+                            else
+                            {
+                                club = m.awayTeam;
+                            }
                             if (intTickets.ElementAt(i)[1] == intTickets.ElementAt(i)[2])
                             {
-                                ticketStats.InnerHtml += "<p>" + ticketService.getTicket_type(intTickets.ElementAt(i)[0]).name + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</p>";
-                            } else
+                                ticketStats.InnerHtml += "<p>" + club.name +": " + tt.name.Trim() + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") </p>";
+                            }
+                            else
                             {
-                                Ticket_type tt = ticketService.getTicket_type(intTickets.ElementAt(i)[0]);
-                                
-                                ticketStats.InnerHtml += "<p><a href=\"ticketSale.aspx?ticket="+tt.id+"&match="+m.id+"\">" + tt.name + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
+                                ticketStats.InnerHtml += "<p><a href=\"ticketSale.aspx?ticket=" + tt.id + "&match=" + m.id + "\">" + club.name.Trim()+": " + tt.name   + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
                             }
                         }
                         content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
