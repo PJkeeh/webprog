@@ -61,9 +61,13 @@ namespace webprog
 
             int available = new MatchService().getTicketsAvailableOfTicketType(m, tt)[1];
 
-            if(wannaBuy > maxBuy)
+            if (wannaBuy > maxBuy)
             {
                 errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> tickets kopen.";
+            }
+            else if (wannaBuy <= 0)
+            {
+                errorMessage.InnerHtml = "Geef een gelig getal in van 1 tot " + maxBuy;
             }
             else if (wannaBuy + numBought > maxBuy)
             {
