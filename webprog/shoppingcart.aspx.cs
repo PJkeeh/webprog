@@ -27,7 +27,8 @@ namespace webprog
 
                 for (int i = 0; i < matches.Count; i++)
                 {
-                    cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name + " " + matches[i].date.ToShortDateString() + "</h2>";
+                    cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name 
+                        + " " + matches[i].date.ToShortDateString() + "</h2>";
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
                         int amount = 0;
@@ -52,10 +53,15 @@ namespace webprog
                             {
                                 club = matches[i].homeTeam;
                             }
-                            if(amount == 1)
-                                cart.InnerHtml += "<p><b>" + amount + "</b> ticket voor <b>" + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
+                            cart.InnerHtml += "<p><a href=\"deleteShopping.aspx?tt=" + ticketTypes[k].id 
+                                + "&m=+" + matches[i].id 
+                                + "\"><img src=\"img/remove.png\" height=\"12px\" /></a>";
+                            if (amount == 1)
+                                cart.InnerHtml += "<b>" + amount + "</b> ticket voor <b>" 
+                                    + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
                             else
-                                cart.InnerHtml += "<p><b>" + amount + "</b> tickets voor " + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
+                                cart.InnerHtml += "<b>" + amount + "</b> tickets voor " 
+                                    + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
                         }
                     }
                 }
@@ -65,13 +71,13 @@ namespace webprog
         private List<Match> countMatches(List<Ticket> cart)
         {
             List<Match> retVal = new List<Match>();
-            
+
             for (int i = 0; i < cart.Count; i++)
             {
                 Boolean contains = false;
-                for(int j = 0; j < retVal.Count; j++)
+                for (int j = 0; j < retVal.Count; j++)
                 {
-                    if(retVal[j].id == cart[i].match.id)
+                    if (retVal[j].id == cart[i].match.id)
                     {
                         contains = true;
                         break;

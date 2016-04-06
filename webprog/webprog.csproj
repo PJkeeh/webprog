@@ -68,6 +68,8 @@
   <ItemGroup>
     <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
+    <Content Include="deleteShopping.aspx" />
+    <Content Include="img\remove.png" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
     <Content Include="js\remove_empty.js" />
@@ -112,6 +114,13 @@
     <Compile Include="DAO\ticketDAO.cs" />
     <Compile Include="DAO\ticket_teamDAO.cs" />
     <Compile Include="DAO\ticket_typeDAO.cs" />
+    <Compile Include="deleteShopping.aspx.cs">
+      <DependentUpon>deleteShopping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="deleteShopping.aspx.designer.cs">
+      <DependentUpon>deleteShopping.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Domain\abonnement.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
@@ -200,6 +209,7 @@
       <DependentUpon>ticketView.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
