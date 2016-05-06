@@ -48,9 +48,9 @@ namespace webprog
                             total += intTickets.ElementAt(i)[2];
                         }
                         if (sold == total)
-                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + m.date.ToShortDateString() + " met " + sold.ToString() + " verkochte tickets uitverkocht.";
+                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + m.date.ToShortDateString() + " met " + sold.ToString() + " verkochte ticket(s) uitverkocht.";
                         else
-                            matchOver_tickets.InnerHtml = "Er waren " + sold.ToString() + " tickets van de " + total.ToString() + " verkocht.";
+                            matchOver_tickets.InnerHtml = "Er waren " + sold.ToString() + " ticket(s) van de " + total.ToString() + " verkocht.";
 
                         matchOver_date.InnerHtml = m.date.Date.ToShortDateString();
                     }

@@ -40,7 +40,7 @@ namespace webprog
                     if (tickNum[tt.id][1] < tickNum[tt.id][2])
                     {
                         numBought = ticketService.getTicketsOfLoginOnMatch(getLogin(), m).Count;
-                        content.InnerHtml = "<p>You bought " + numBought + " already. Available:" + tickNum[tt.id][1].ToString() + "/" + tickNum[tt.id][2].ToString() + "</p>";
+                        content.InnerHtml = "<p>Je hebt al " + numBought + " tickets gekocht. Beschikbaar:" + tickNum[tt.id][1].ToString() + "/" + tickNum[tt.id][2].ToString() + "</p>";
 
                     }
                     else
@@ -63,7 +63,7 @@ namespace webprog
 
             if (wannaBuy > maxBuy)
             {
-                errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> tickets kopen.";
+                errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> ticket(s) kopen.";
             }
             else if (wannaBuy <= 0)
             {
@@ -72,10 +72,10 @@ namespace webprog
             else if (wannaBuy + numBought > maxBuy)
             {
                 errorMessage.InnerHtml = "Je hebt al "
-                    + numBought + " tickets gekocht. Als je nog "
-                    + wannaBuy + " tickets bijkoopt, heb je "
-                    + (numBought + wannaBuy - maxBuy) + "tickets teveel. Een persoon mag slechts <b>"
-                    + maxBuy + "</b> tickets kopen.";
+                    + numBought + " ticket(s) gekocht. Als je nog "
+                    + wannaBuy + " ticket(s) bijkoopt, heb je "
+                    + (numBought + wannaBuy - maxBuy) + " ticket(s) teveel. Een persoon mag slechts <b>"
+                    + maxBuy + "</b> ticket(s) kopen.";
             }
             else if (available + wannaBuy > new MatchService().getTicketsAvailableOfTicketType(m, tt)[2])
             {
@@ -112,10 +112,10 @@ namespace webprog
                 }
                 else {
                     errorMessage.InnerHtml = "Je hebt al "
-                        + numBought + " tickets gekocht voor deze match. Momenteel bevinden zich al "
-                        + toBuy + " tickets in je winkelwagen. Bij het aankopen van nog "
-                        + wannaBuy + " tickets wordt het maximum van "
-                        + maxBuy + " per  match overschreden.";
+                        + numBought + " ticket(s) gekocht voor deze match. Momenteel bevinden zich al "
+                        + toBuy + " ticket(s) in je winkelwagen. Bij het aankopen van nog "
+                        + wannaBuy + " ticket(s) wordt het maximum van "
+                        + maxBuy + " per match overschreden.";
                 }
             }
         }

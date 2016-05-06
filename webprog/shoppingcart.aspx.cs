@@ -68,7 +68,7 @@ namespace webprog
                                 cart.InnerHtml += "<b>" + amount + "</b> ticket voor <b>" 
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
                             else
-                                cart.InnerHtml += "<b>" + amount + "</b> tickets voor " 
+                                cart.InnerHtml += "<b>" + amount + "</b> ticket(s) voor " 
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
                         }
                     }
