@@ -30,7 +30,7 @@ namespace webprog
                             toRemove.Add(i);
                         }
                     }
-                    for (int i = 0; i < toRemove.Count; i++)
+                    for (int i = toRemove.Count -1; i >= 0; i--)
                     {
                         cart.RemoveAt(toRemove[i]);
                     }
