@@ -79,7 +79,6 @@ namespace webprog.BLL
                     if (tickets.ElementAt(j).ticket_type.id == ticket_team.ElementAt(i).ticket_type.id)
                     {
                         sold++;
-                        break;
                     }
                 }
                 for (int j = 0; j < abos.Count; j++)
