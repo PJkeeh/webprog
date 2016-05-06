@@ -36,9 +36,15 @@ namespace webprog.BLL
             return dao.getAllOfLoginFromMatch(login, m);
         }
 
-        public void buyTickets(List<Ticket> t)
+        public List<Ticket> buyTickets(List<Ticket> t)
         {
+            Login login = t[0].login;
+            List<Ticket> before = dao.getAllOfLogin(login.login.Trim());
             dao.setTicket(t);
+            List<Ticket> after = dao.getAllOfLogin(login.login.Trim());
+
+            return after.Except(before).ToList();
+            
         }
     }
 }

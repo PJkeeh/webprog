@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -153,12 +155,44 @@ namespace webprog
                 String error = allowedToBuy(shoppingCart);
                 if (allowedToBuy(shoppingCart) == null)
                 {
-                    buy_tickets();
+                    List<Ticket> bought = buy_tickets();
+                    send_mail(new LoginService().getLogin(getLogin()), bought);
+                    Session["shoppingCart"] = null;
                 }
             }
         }
 
-        private void buy_tickets()
+        private void send_mail(Domain.Login login, List<Ticket> t)
+        {
+            String mail = null;
+            if (login.name != null && login.name.Trim() != "")
+                mail = "Beste " + login.name+"\n";
+            else
+                mail = "Beste " + login.login+"\n";
+            mail += "\n"
+                + "Dit is uw bevestiging voor uw aangekochte tickets. Breng deze bevesting en de bijgevoegde vouchers mee naar het stadion samen met uw identiteitskaart. \n\n";
+            for (int i = 0; i<t.Count; i++)
+            {
+                mail += "----------------------------------------------------------------\n";
+                mail += t[i].match.homeTeam.name.Trim() +" - "+ t[i].match.awayTeam.name.Trim() + " - "+ t[i].match.date.ToShortDateString() + " " + t[i].id + "\n";
+            }
+
+            mail += "----------------------------------------------------------------\n";
+
+            mail += "Gelieve op deze mail niet te antwoorden.\n"
+                + "Bedankt voor uw aankoop!"
+                + "\n\nHet VoetbalTickets team.";
+
+            MailMessage o = new MailMessage("VoetbalTicketsVives@hotmail.com", login.email.Trim() , "Aankoop", mail);
+            NetworkCredential netCred = new NetworkCredential("VoetbalTicketsVives@hotmail.com", "Webprogrammeren");
+            SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
+            smtpobj.EnableSsl = true;
+            smtpobj.Credentials = netCred;
+            smtpobj.Send(o);
+                //ADD CATCH;
+        }
+
+        private List<Ticket> buy_tickets()
         {
             if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
             {
@@ -166,9 +200,9 @@ namespace webprog
 
                 TicketService t = new TicketService();
 
-                t.buyTickets(shoppingCart);
-                Session["shoppingCart"] = null;
+                return t.buyTickets(shoppingCart);
             }
+            return null;
         }
     }
 }

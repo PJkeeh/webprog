@@ -60,7 +60,7 @@ namespace webprog.DAO
             String strSQL = "SELECT * FROM ticket where login = @login;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
-            com.Parameters.AddWithValue("@login", username);
+            com.Parameters.AddWithValue("@login", username.Trim());
 
             try
             {
@@ -161,19 +161,19 @@ namespace webprog.DAO
         public void setTicket(Ticket t)
         {
             cnn = new SqlConnection(dbLoc);
-            List<Ticket> retVal = new List<Ticket>();
+            Ticket retVal = new Ticket();
             
             String strSQL = "INSERT INTO ticket VALUES (@ticket_type, @match_id, @login)";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@ticket_type", t.ticket_type.id);
             com.Parameters.AddWithValue("@match_id", t.match.id);
-            com.Parameters.AddWithValue("@login", t.login.login);
+            com.Parameters.AddWithValue("@login", t.login.login.Trim());
 
             try
             {
                 cnn.Open();
-                reader = com.ExecuteReader();
+                com.ExecuteNonQuery();     
             }
             catch (Exception ex)
             {
