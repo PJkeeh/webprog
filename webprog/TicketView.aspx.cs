@@ -39,7 +39,7 @@ namespace webprog
                         content.InnerHtml = "";
                         ticketSaleClosed.InnerHtml = "";
 
-                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToString() + ")";
+                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
                         int sold = 0;
                         int total = 0;
                         for (int i = 0; i < intTickets.Count; i++)
@@ -52,7 +52,7 @@ namespace webprog
                         else
                             matchOver_tickets.InnerHtml = "Er waren " + sold.ToString() + " tickets van de " + total.ToString() + " verkocht.";
 
-                        MatchOver_date.InnerHtml = m.date.Date.ToString();
+                        matchOver_date.InnerHtml = m.date.Date.ToShortDateString();
                     }
                     else if (sale_too_soon)
                     {
@@ -62,7 +62,8 @@ namespace webprog
                         ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
                         ticketSaleClosed_OpenDate.InnerHtml = m.date.Date.AddMonths(-1).ToShortDateString();
                     }
-                    else {
+                    else
+                    {
                         for (int i = 0; i < intTickets.Count; i++)
                         {
                             ticketSaleClosed.InnerHtml = "";
