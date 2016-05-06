@@ -25,6 +25,14 @@ namespace webprog
 
                 List<Match> matches = countMatches(shoppingCart);
 
+                String error = allowedToBuy(shoppingCart);
+
+                if (error != null)
+                {
+                    cart.InnerHtml += "<div class=\"errorLabel\" >" + error + "</div>";
+                    buy.Enabled = false;
+                }
+
                 for (int i = 0; i < matches.Count; i++)
                 {
                     cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name 
@@ -66,6 +74,9 @@ namespace webprog
                     }
                 }
             }
+            else{
+                buy.Enabled = false;
+            }
         }
 
         private List<Match> countMatches(List<Ticket> cart)
@@ -90,6 +101,66 @@ namespace webprog
             }
 
             return retVal;
+        }
+
+        private String allowedToBuy(List<Ticket> cart)
+        {
+            String retVal = null;
+            List<String> errors = new List<String>();
+
+            Boolean failed = false;
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (failed)
+                    break;
+
+                for (int j = 0; j < cart.Count; j++)
+                {
+                    if (failed)
+                        break;
+                    if (cart[i].match.id != cart[j].match.id)
+                    {
+                        if (cart[i].match.date.Date.Equals(cart[j].match.date.Date))
+                        {
+                            errors.Add("Je kan geen verschillende matchen bekijken op dezelfde dag.");
+                            failed = true;
+                        }
+                    }
+                }
+            }
+            failed = false;
+
+
+            if(errors.Count > 0)
+            {
+                retVal = "";
+                for (int i = 0; i < errors.Count; i++)
+                {
+                    retVal += errors[i] + "</ br>";
+                }
+                retVal.Substring(0, retVal.Length - 6);
+            }
+
+            return retVal;
+        }
+
+        protected void buy_Click(object sender, EventArgs e)
+        {
+            if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
+            {
+                List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
+
+                String error = allowedToBuy(shoppingCart);
+                if (allowedToBuy(shoppingCart) == null)
+                {
+                    buy_tickets();
+                }
+            }
+        }
+
+        private void buy_tickets()
+        {
+            //Buy tickets
         }
     }
 }
