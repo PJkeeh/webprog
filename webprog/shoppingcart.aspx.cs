@@ -160,7 +160,15 @@ namespace webprog
 
         private void buy_tickets()
         {
-            //Buy tickets
+            if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
+            {
+                List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
+
+                TicketService t = new TicketService();
+
+                t.buyTickets(shoppingCart);
+                Session["shoppingCart"] = null;
+            }
         }
     }
 }

@@ -36,9 +36,9 @@ namespace webprog.BLL
             return dao.getAllOfLoginFromMatch(login, m);
         }
 
-        internal string getTicket_type(object p)
+        public void buyTickets(List<Ticket> t)
         {
-            throw new NotImplementedException();
+            dao.setTicket(t);
         }
     }
 }

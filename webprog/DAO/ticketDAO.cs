@@ -158,6 +158,42 @@ namespace webprog.DAO
             }
         }
 
+        public void setTicket(Ticket t)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Ticket> retVal = new List<Ticket>();
+            
+            String strSQL = "INSERT INTO ticket VALUES (@ticket_type, @match_id, @login)";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@ticket_type", t.ticket_type.id);
+            com.Parameters.AddWithValue("@match_id", t.match.id);
+            com.Parameters.AddWithValue("@login", t.login.login);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
+        public void setTicket(List<Ticket> t)
+        {
+            for (int i = 0; i < t.Count; i++)
+            {
+                setTicket(t[i]);
+            }
+        }
+
         private Ticket CreateTicket(SqlDataReader reader)
         {
             Ticket retVal = new Ticket
@@ -169,5 +205,6 @@ namespace webprog.DAO
             };
             return retVal;
         }
+
     }
 }
