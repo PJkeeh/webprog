@@ -58,7 +58,7 @@ namespace webprog
             clubSelected.InnerHtml += "<p>" + teams.ElementAt(id).description + "</p>";
             clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(id).stadion.id + "'>" + teams.ElementAt(id).stadion.name + ".</a>";
 
-            matchesID.InnerHtml = "<h1><a href=" + Page.ResolveUrl("~/Calendar.aspx?club=" + teams.ElementAt(id).id) + ">" + teams.ElementAt(id).name + "</a></h1>";
+            matchesID.InnerHtml = "<h1><a href=" + Page.ResolveUrl("~/Calendar.aspx?club=" + teams.ElementAt(id).id) + ">Matches</a></h1>";
         }
 
         private void fillMatchesDiv(List<Match> matches)
