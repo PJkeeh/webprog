@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="leftContent">
         <div id="matchesID" runat="server" class="content">
-            <h1>Calender</h1>
+            <h1>Kalender</h1>
         </div>
     </div>
     <div class ="rightContent">

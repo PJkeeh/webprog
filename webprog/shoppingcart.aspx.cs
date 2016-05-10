@@ -38,7 +38,7 @@ namespace webprog
                 for (int i = 0; i < matches.Count; i++)
                 {
                     cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name
-                        + " " + matches[i].date.ToShortDateString() + "</h2>";
+                        + " " + String.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</h2>";
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
                         int amount = 0;
@@ -175,8 +175,8 @@ namespace webprog
                 + "Dit is uw bevestiging voor uw aangekochte tickets. Breng deze bevesting en de bijgevoegde vouchers mee naar het stadion samen met uw identiteitskaart. \n\n";
             for (int i = 0; i < t.Count; i++)
             {
-                mail += "----------------------------------------------------------------\n";
-                mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + t[i].match.date.ToShortDateString() + " " + t[i].id + "\n";
+                mail += "----------------------------------------------------------------\n"; 
+                mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + String.Format("{0:dd-MM-yyyy}", t[i].match.date) + " " + t[i].id + "\n";
             }
 
             mail += "----------------------------------------------------------------\n";
