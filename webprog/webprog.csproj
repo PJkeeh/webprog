@@ -77,11 +77,13 @@
     <Content Include="logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="Masterpage\Site1.Master" />
+    <None Include="Properties\PublishProfiles\FTP Azure.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +93,9 @@
     <Content Include="stadion.aspx" />
     <Content Include="ticketSale.aspx" />
     <Content Include="ticketView.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
