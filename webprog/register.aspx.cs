@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Web.Security;
 using webprog.BLL;
 
@@ -14,6 +15,11 @@ namespace webprog
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             LoginService loginService = new LoginService();
+
+            lblEmailError.InnerText = "";
+            lblLoginError.InnerText = "";
+            lblNaamError.InnerText = "";
+            lblPasswordError.InnerText = "";
 
             if (txtLogin.Text.Trim().Equals(""))
             {
@@ -33,9 +39,27 @@ namespace webprog
                         else
                         {
                             lblPasswordError.InnerHtml = "";
-                            
-                            loginService.registerLogin(txtLogin.Text, txtPassword.Text);
-                            Response.Redirect("index.aspx");
+
+                            String email = txtEmail.Text;
+                            Regex regex = new Regex(@"\w[\w\.]*@\w+\.\w+");
+                            Match match = regex.Match(email);
+                            if (!match.Success)
+                            {
+                                lblEmailError.InnerHtml = "Geef een geldig emailadres op.";
+                            }
+                            else {
+                                lblEmailError.InnerHtml = "";
+
+                                if (txtNaam.Text == null || txtNaam.Text.Trim() == "")
+                                {
+                                    loginService.registerLogin(txtLogin.Text, txtPassword.Text, email);
+                                }
+                                else
+                                {
+                                    loginService.registerLogin(txtLogin.Text, txtPassword.Text, txtNaam.Text, email);
+                                }
+                                Response.Redirect("index.aspx");
+                            }
                         }
                     }
                     else
@@ -44,9 +68,7 @@ namespace webprog
                     }
                 }
                 else
-                {
                     lblLoginError.InnerHtml = "Deze gebruikersnaam is al in gebruik.";
-                }
             }
         }
     }

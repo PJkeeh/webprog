@@ -36,17 +36,24 @@ namespace webprog.BLL
             Boolean retVal = false;
             string hash = hashPassword(password);
 
-            retVal = getLogin(login).password.Trim().Equals(hash.Trim());
+            if (getLogin(login) == null)
+                retVal = false;
+            else
+                retVal = getLogin(login).password.Trim().Equals(hash.Trim());
 
             return retVal;
         }
 
-        public Login registerLogin(String login, String password)
+        public Login registerLogin(String login, string password, String email)
+        {
+            return registerLogin(login, password, null, email);
+        }
+
+        public Login registerLogin(String login, String password, String naam, String email)
         {
             LoginDAO dao = new LoginDAO();
             string hash = hashPassword(password);
-            return dao.setLogin(login, hash);
-            
+            return dao.setLogin(login, hash, naam, email);
         }
 
         private List<Login> removePasswords(List<Login> logins)

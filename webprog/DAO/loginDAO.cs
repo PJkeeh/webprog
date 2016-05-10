@@ -78,15 +78,28 @@ namespace webprog.DAO
             }
         }
 
-        public Login setLogin(String login, String hash)
+        public Login setLogin(String login, String hash, String email)
+        {
+            //Should not have to be used
+            return setLogin(login, hash, null , email);
+        }
+
+        public Login setLogin(String login, String hash, String naam, String email)
         {
             cnn = new SqlConnection(dbLoc);
 
-            String strSQL = "insert into login values (@login, @hash);";
+            String strSQL = "insert into login values (@login, @hash,@naam,@email);";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@login", login);
             com.Parameters.AddWithValue("@hash", hash);
+
+            if (naam == null)
+                com.Parameters.AddWithValue("@naam", DBNull.Value);
+            else
+                com.Parameters.AddWithValue("@naam", naam);
+
+            com.Parameters.AddWithValue("@email", email);
 
             cnn.Open();
 
