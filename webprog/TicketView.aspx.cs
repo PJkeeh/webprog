@@ -16,11 +16,16 @@ namespace webprog
             }
             else {
                 MatchService matchService = new MatchService();
-                if (Request.QueryString["match"] == null || matchService.getMatch(Convert.ToInt32(Request.QueryString["match"])) == null)
+
+                int selected = 0;
+                if (Request.QueryString["match"] == null || Int32.TryParse(Request.QueryString["match"], out selected) == false || matchService.getMatch(selected) == null)
                 {
                     content.InnerHtml = "<h1>Geen ticket geselecteerd.</h1>"
                         + "<p>Klik <a href=\"clubs.aspx\">hier</a> om een club te selecteren "
                         + "of <a href=\"calendar.aspx\">hier</a> om de kalender te bekijken.";
+
+                    ticketSaleClosed.InnerHtml = "";
+                    matchOver.InnerHtml = "";
                 }
                 else
                 {
@@ -38,8 +43,7 @@ namespace webprog
                     {
                         content.InnerHtml = "";
                         ticketSaleClosed.InnerHtml = "";
-
-                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
+                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
                         int sold = 0;
                         int total = 0;
                         for (int i = 0; i < intTickets.Count; i++)
@@ -48,19 +52,19 @@ namespace webprog
                             total += intTickets.ElementAt(i)[2];
                         }
                         if (sold == total)
-                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + m.date.ToShortDateString() + " met " + sold.ToString() + " verkochte ticket(s) uitverkocht.";
+                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + String.Format("{0:dd-MM-yyyy}", m.date) + " met " + sold.ToString() + " verkochte ticket(s) uitverkocht.";
                         else
                             matchOver_tickets.InnerHtml = "Er waren " + sold.ToString() + " ticket(s) van de " + total.ToString() + " verkocht.";
 
-                        matchOver_date.InnerHtml = m.date.Date.ToShortDateString();
+                        matchOver_date.InnerHtml = String.Format("{0:dd-MM-yyyy}", m.date.Date);
                     }
                     else if (sale_too_soon)
                     {
                         content.InnerHtml = "";
                         matchOver.InnerHtml = "";
 
-                        ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
-                        ticketSaleClosed_OpenDate.InnerHtml = m.date.Date.AddMonths(-1).ToShortDateString();
+                        ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
+                        ticketSaleClosed_OpenDate.InnerHtml = String.Format("{0:dd-MM-yyyy}", m.date);
                     }
                     else
                     {
@@ -99,7 +103,7 @@ namespace webprog
                         ticketStats.InnerHtml += "<h2>Thuisplaatsen</h2>" + innerHTMLs[0]
                                                + "<br /><h2>Bezoekersplaatsen</h2>" + innerHTMLs[1];
 
-                        content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
+                        content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
                     }
                 }
             }
