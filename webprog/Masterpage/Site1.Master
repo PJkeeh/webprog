@@ -18,14 +18,14 @@
     <div class="menu-wrap">
       <div class="menu">
         <ul>
-          <li><a href="<%= Page.ResolveUrl("~/index.aspx") %>">home</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/index.aspx") %>">Start</a></li>
           <li><a href="<%= Page.ResolveUrl("~/clubs.aspx") %>">Clubs</a></li>
-          <li><a href="<%= Page.ResolveUrl("~/calendar.aspx") %>">Calender</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/calendar.aspx") %>">Kalender</a></li>
           <li><a href="<%= Page.ResolveUrl("~/shoppingcart.aspx") %>">Winkelwagen</a></li>
         </ul>
 
         <ul  runat="server" id="login">
-            <li><a href="logout.aspx">Logout</a></li>
+            <li><a href="logout.aspx">Log uit</a></li>
         </ul>
       </div>
     </div>

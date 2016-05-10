@@ -18,7 +18,7 @@ namespace webprog
             {
                 if (!Page.IsPostBack)
                 {
-                    login.InnerHtml ="<li><a id = \"register\" href = \"" + Page.ResolveUrl("~/register.aspx") + "\" > Register </a></li>"
+                    login.InnerHtml ="<li><a id = \"register\" href = \"" + Page.ResolveUrl("~/register.aspx") + "\" > Registreer </a></li>"
                                    + "<li><a id=\"login\" href=\"" + Page.ResolveUrl("~/login.aspx") + "\">Login</a></li>";
                 }
             }

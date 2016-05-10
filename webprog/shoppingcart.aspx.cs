@@ -37,7 +37,7 @@ namespace webprog
 
                 for (int i = 0; i < matches.Count; i++)
                 {
-                    cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name 
+                    cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name
                         + " " + matches[i].date.ToShortDateString() + "</h2>";
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
@@ -63,21 +63,22 @@ namespace webprog
                             {
                                 club = matches[i].homeTeam;
                             }
-                            cart.InnerHtml += "<p><a href=\"deleteShopping.aspx?tt=" + ticketTypes[k].id 
-                                + "&m=+" + matches[i].id 
+                            cart.InnerHtml += "<p><a href=\"deleteShopping.aspx?tt=" + ticketTypes[k].id
+                                + "&m=+" + matches[i].id
                                 + "\"><img src=\"img/remove.png\" height=\"12px\" /></a>";
                             if (amount == 1)
-                                cart.InnerHtml += "<b>" + amount + "</b> ticket voor <b>" 
+                                cart.InnerHtml += "<b>" + amount + "</b> ticket voor <b>"
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
                             else
-                                cart.InnerHtml += "<b>" + amount + "</b> ticket(s) voor " 
+                                cart.InnerHtml += "<b>" + amount + "</b> ticket(s) voor "
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
                         }
                     }
                 }
             }
-            else{
+            else {
                 buy.Enabled = false;
+                buy.Visible = false;
             }
         }
 
@@ -133,7 +134,7 @@ namespace webprog
             failed = false;
 
 
-            if(errors.Count > 0)
+            if (errors.Count > 0)
             {
                 retVal = "";
                 for (int i = 0; i < errors.Count; i++)
@@ -158,6 +159,7 @@ namespace webprog
                     List<Ticket> bought = buy_tickets();
                     send_mail(new LoginService().getLogin(getLogin()), bought);
                     Session["shoppingCart"] = null;
+                    Response.Redirect(Request.Path);
                 }
             }
         }
@@ -166,15 +168,15 @@ namespace webprog
         {
             String mail = null;
             if (login.name != null && login.name.Trim() != "")
-                mail = "Beste " + login.name+"\n";
+                mail = "Beste " + login.name + "\n";
             else
-                mail = "Beste " + login.login+"\n";
+                mail = "Beste " + login.login + "\n";
             mail += "\n"
                 + "Dit is uw bevestiging voor uw aangekochte tickets. Breng deze bevesting en de bijgevoegde vouchers mee naar het stadion samen met uw identiteitskaart. \n\n";
-            for (int i = 0; i<t.Count; i++)
+            for (int i = 0; i < t.Count; i++)
             {
                 mail += "----------------------------------------------------------------\n";
-                mail += t[i].match.homeTeam.name.Trim() +" - "+ t[i].match.awayTeam.name.Trim() + " - "+ t[i].match.date.ToShortDateString() + " " + t[i].id + "\n";
+                mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + t[i].match.date.ToShortDateString() + " " + t[i].id + "\n";
             }
 
             mail += "----------------------------------------------------------------\n";
@@ -183,13 +185,13 @@ namespace webprog
                 + "Bedankt voor uw aankoop!"
                 + "\n\nHet VoetbalTickets team.";
 
-            MailMessage o = new MailMessage("VoetbalTicketsVives@hotmail.com", login.email.Trim() , "Aankoop", mail);
+            MailMessage o = new MailMessage("VoetbalTicketsVives@hotmail.com", login.email.Trim(), "Aankoop", mail);
             NetworkCredential netCred = new NetworkCredential("VoetbalTicketsVives@hotmail.com", "Webprogrammeren");
             SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
             smtpobj.EnableSsl = true;
             smtpobj.Credentials = netCred;
             smtpobj.Send(o);
-                //ADD CATCH;
+            //ADD CATCH;
         }
 
         private List<Ticket> buy_tickets()

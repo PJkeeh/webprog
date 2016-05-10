@@ -5,7 +5,7 @@
         <div class="content">
             <h1>Shopping cart</h1>
             <div id="cart" runat="server">
-                The shopping cart is empty.
+                Het winkelwagentje is leeg.
             </div>
             <asp:Button ID="buy" runat="server" Text="Koop tickets" OnClick="buy_Click" />
         </div>
