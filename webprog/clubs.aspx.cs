@@ -31,7 +31,7 @@ namespace webprog
             }
             else
             {
-                if (club == null || club.Equals("") || Int32.TryParse(club, out selected) == false || selected >= teams.Count)
+                if (club == null || club.Equals("") || Int32.TryParse(club, out selected) == false || selected >= teams.Count || selected < 0)
                 {
                     clubSelected.InnerHtml = "Gelieve een team te selecteren.";
                     //fillClubDiv(0);
@@ -74,7 +74,7 @@ namespace webprog
                     if (i == 5)
                         break;
                     matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
-                    matchesID.InnerHtml += "<p>" + matches.ElementAt(i).date.ToShortDateString() + "</p>";
+                    matchesID.InnerHtml += "<p>" + String.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</p>";
                 }
             }
         }
