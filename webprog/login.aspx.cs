@@ -15,13 +15,13 @@ namespace webprog
             String login = txtLogin.Text;
             String password = txtPassword.Text;
 
-            if(login.Equals(""))
+            if (login.Equals(""))
             {
                 lblError.InnerHtml = "<p>Geef een gebruikersnaam en wachtwoord in.</p>";
             }
-            else if(!passwordCorrect(login, password))
+            else if (!passwordCorrect(login, password))
             {
-                //lblError.InnerHtml = "<p>De gebruikersnaam en het wachtwoord komen niet overeen.</p>";
+                lblError.InnerHtml = "<p>De gebruikersnaam en het wachtwoord komen niet overeen.</p>";
             }
             else
             {
@@ -37,7 +37,6 @@ namespace webprog
             Boolean retVal = false;
             LoginService loginService = new LoginService();
 
-            lblError.InnerHtml = loginService.getLogin(login).password;
             retVal = loginService.checkLogin(login, password);
 
             return retVal;
