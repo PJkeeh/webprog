@@ -64,31 +64,41 @@ namespace webprog
                     }
                     else
                     {
+                        String[] innerHTMLs = { "", "" };
+                        int j; //Used to place it in the right innerHTMLs
+
                         for (int i = 0; i < intTickets.Count; i++)
                         {
                             ticketSaleClosed.InnerHtml = "";
                             matchOver.InnerHtml = "";
 
                             Ticket_type tt = ticketService.getTicket_type(intTickets.ElementAt(i)[0]);
-
+                            
                             Club club = new Club();
                             if (tt.hometeam)
                             {
                                 club = m.homeTeam;
+                                j = 0;
                             }
                             else
                             {
                                 club = m.awayTeam;
+                                j = 1;
                             }
+
                             if (intTickets.ElementAt(i)[1] == intTickets.ElementAt(i)[2])
                             {
-                                ticketStats.InnerHtml += "<p>" + club.name +": " + tt.name.Trim() + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") </p>";
+                                innerHTMLs[j] += "<p>" + club.name +": " + tt.name.Trim() + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") </p>";
                             }
                             else
                             {
-                                ticketStats.InnerHtml += "<p><a href=\"ticketSale.aspx?ticket=" + tt.id + "&match=" + m.id + "\">" + club.name.Trim()+": " + tt.name   + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
+                                innerHTMLs[j] += "<p><a href=\"ticketSale.aspx?ticket=" + tt.id + "&match=" + m.id + "\">" + club.name.Trim()+": " + tt.name   + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
                             }
                         }
+
+                        ticketStats.InnerHtml += "<h2>Thuisplaatsen</h2>" + innerHTMLs[0]
+                                               + "<br /><h2>Bezoekersplaatsen</h2>" + innerHTMLs[1];
+
                         content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + m.date.ToShortDateString() + ")";
                     }
                 }
