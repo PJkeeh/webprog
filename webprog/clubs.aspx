@@ -4,16 +4,18 @@
     <div class="leftContent">
         <div class="content" >
             <div id="clubSelected" runat="server"></div>
-            <form runat="server">
-                    <asp:DropDownList ID="ddlClubs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClubs_SelectedIndexChanged" AppendDataBoundItems="True">
-                        <asp:ListItem>Selecteer een team:</asp:ListItem>
-
-                    </asp:DropDownList>
-                </form>
         </div>
     </div>
 
     <div class="rightContent">
+        <div class="content">
+            <form runat="server">
+                <asp:DropDownList ID="ddlClubs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClubs_SelectedIndexChanged" AppendDataBoundItems="True">
+                    <asp:ListItem>Selecteer een team:</asp:ListItem>
+
+                </asp:DropDownList>
+            </form>
+        </div>
         <div class="content" id="matchesID" runat="server"></div>
     </div>
 </asp:Content>
