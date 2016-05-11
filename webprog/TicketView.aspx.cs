@@ -43,7 +43,7 @@ namespace webprog
                     {
                         content.InnerHtml = "";
                         ticketSaleClosed.InnerHtml = "";
-                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
+                        matchOver_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + string.Format("{0:dd-MM-yyyy}", m.date) + ")";
                         int sold = 0;
                         int total = 0;
                         for (int i = 0; i < intTickets.Count; i++)
@@ -52,23 +52,23 @@ namespace webprog
                             total += intTickets.ElementAt(i)[2];
                         }
                         if (sold == total)
-                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + String.Format("{0:dd-MM-yyyy}", m.date) + " met " + sold.ToString() + " verkochte ticket(s) uitverkocht.";
+                            matchOver_tickets.InnerHtml = "Het " + m.homeTeam.stadion.name.ToString() + " was op " + string.Format("{0:dd-MM-yyyy}", m.date) + " met " + sold.ToString() + " verkochte ticket(s) uitverkocht.";
                         else
                             matchOver_tickets.InnerHtml = "Er waren " + sold.ToString() + " ticket(s) van de " + total.ToString() + " verkocht.";
 
-                        matchOver_date.InnerHtml = String.Format("{0:dd-MM-yyyy}", m.date.Date);
+                        matchOver_date.InnerHtml = string.Format("{0:dd-MM-yyyy}", m.date.Date);
                     }
                     else if (sale_too_soon)
                     {
                         content.InnerHtml = "";
                         matchOver.InnerHtml = "";
 
-                        ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
-                        ticketSaleClosed_OpenDate.InnerHtml = String.Format("{0:dd-MM-yyyy}", m.date);
+                        ticketSaleClosed_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + string.Format("{0:dd-MM-yyyy}", m.date) + ")";
+                        ticketSaleClosed_OpenDate.InnerHtml = string.Format("{0:dd-MM-yyyy}", m.date);
                     }
                     else
                     {
-                        String[] innerHTMLs = { "", "" };
+                        string[] innerHTMLs = { "", "" };
                         int j; //Used to place it in the right innerHTMLs
 
                         for (int i = 0; i < intTickets.Count; i++)
@@ -103,7 +103,7 @@ namespace webprog
                         ticketStats.InnerHtml += "<h2>Thuisplaatsen</h2>" + innerHTMLs[0]
                                                + "<br /><h2>Bezoekersplaatsen</h2>" + innerHTMLs[1];
 
-                        content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + String.Format("{0:dd-MM-yyyy}", m.date) + ")";
+                        content_title.InnerHtml = m.homeTeam.name + " - " + m.awayTeam.name + "(" + string.Format("{0:dd-MM-yyyy}", m.date) + ")";
                     }
                 }
             }

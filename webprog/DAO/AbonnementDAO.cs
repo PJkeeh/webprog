@@ -10,7 +10,7 @@ namespace webprog.DAO
 {
     public class AbonnementDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -21,7 +21,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Abonnement> retVal = new List<Abonnement>();
 
-            String strSQL = "SELECT * FROM abonnement where abo__ticket_type=@abo__ticket_type;";
+            string strSQL = "SELECT * FROM abonnement where abo__ticket_type=@abo__ticket_type;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@abo__ticket_type", type_id);
@@ -54,7 +54,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Abonnement> retVal = new List<Abonnement>();
 
-            String strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id;";
+            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team_id", team_id);
@@ -87,7 +87,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Abonnement> retVal = new List<Abonnement>();
 
-            String strSQL = "SELECT * FROM abonnement;";
+            string strSQL = "SELECT * FROM abonnement;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -119,7 +119,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Abonnement> retVal = new List<Abonnement>();
 
-            String strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_start_date<=@seasonDate and abo_end_date>@seasonDate;";
+            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_start_date<=@seasonDate and abo_end_date>@seasonDate;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team_id", team_id);

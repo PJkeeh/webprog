@@ -9,7 +9,7 @@ namespace webprog.DAO
 
     public class StadionDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
 
         SqlDataReader reader;
@@ -21,7 +21,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Stadion> retVal = new List<Stadion>();
 
-            String strSQL = "SELECT * FROM stadion;";
+            string strSQL = "SELECT * FROM stadion;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -55,7 +55,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             Stadion retVal = new Stadion();
 
-            String strSQL = "SELECT * FROM stadion where stadion_id = " + id + ";";
+            string strSQL = "SELECT * FROM stadion where stadion_id = " + id + ";";
             
             SqlCommand com = new SqlCommand(strSQL, cnn);
 

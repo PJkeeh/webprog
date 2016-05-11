@@ -9,7 +9,7 @@ namespace webprog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String id = Request.QueryString["stadion"];
+            string id = Request.QueryString["stadion"];
             int stadion_id;
 
             if (id == null|| id == "" || Int32.TryParse(id, out stadion_id) == false)

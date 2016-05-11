@@ -8,7 +8,7 @@ namespace webprog.DAO
 {
     public class Ticket_typeDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -17,7 +17,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             Ticket_type retVal = new Ticket_type();
 
-            String strSQL = "SELECT * FROM ticket_type where ticket_type_id = @ticket_type_id;";
+            string strSQL = "SELECT * FROM ticket_type where ticket_type_id = @ticket_type_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@ticket_type_id", id);
@@ -50,7 +50,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket_type> retVal = new List<Ticket_type>();
 
-            String strSQL = "SELECT * FROM ticket_type;";
+            string strSQL = "SELECT * FROM ticket_type;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 

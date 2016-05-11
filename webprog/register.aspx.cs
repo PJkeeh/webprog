@@ -40,7 +40,7 @@ namespace webprog
                         {
                             lblPasswordError.InnerHtml = "";
 
-                            String email = txtEmail.Text;
+                            string email = txtEmail.Text;
                             Regex regex = new Regex(@"\w[\w\.]*@\w+\.\w+");
                             Match match = regex.Match(email);
                             if (!match.Success)

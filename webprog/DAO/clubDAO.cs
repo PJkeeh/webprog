@@ -10,7 +10,7 @@ namespace webprog.DAO
 
     public class ClubDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -21,7 +21,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Club> retVal = new List<Club>();
 
-            String strSQL = "SELECT * FROM team;";
+            string strSQL = "SELECT * FROM team;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -53,7 +53,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             Club retVal = new Club();
 
-            String strSQL = "SELECT * FROM team where team_id = @team_id;";
+            string strSQL = "SELECT * FROM team where team_id = @team_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team_id", id);

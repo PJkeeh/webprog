@@ -9,7 +9,7 @@ namespace webprog.DAO
 
     public class MatchDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -20,7 +20,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Match> retVal = new List<Match>();
 
-            String strSQL = "SELECT * FROM match order by match_date;";
+            string strSQL = "SELECT * FROM match order by match_date;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -51,7 +51,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Match> retVal = new List<Match>();
 
-            String strSQL = "SELECT * FROM match where match_date >= cast(GETDATE() as date) order by match_date;";
+            string strSQL = "SELECT * FROM match where match_date >= cast(GETDATE() as date) order by match_date;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -83,7 +83,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Match> retVal = new List<Match>();
 
-            String strSQL = "SELECT * FROM match where match_hometeam_id = @team OR match_awayteam_id = @team order by match_date;";
+            string strSQL = "SELECT * FROM match where match_hometeam_id = @team OR match_awayteam_id = @team order by match_date;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team", id);
@@ -116,7 +116,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             Match retVal = null;
 
-            String strSQL = "SELECT * FROM match where match_id = @match_id;";
+            string strSQL = "SELECT * FROM match where match_id = @match_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@match_id", id);
@@ -151,7 +151,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Match> retVal = new List<Match>();
 
-            String strSQL = "SELECT * FROM match where (match_hometeam_id = @team OR match_awayteam_id = @team) AND match_date >= cast(GETDATE() as date) order by match_date;";
+            string strSQL = "SELECT * FROM match where (match_hometeam_id = @team OR match_awayteam_id = @team) AND match_date >= cast(GETDATE() as date) order by match_date;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team", id);

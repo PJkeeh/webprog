@@ -12,8 +12,8 @@ namespace webprog
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            String login = txtLogin.Text;
-            String password = txtPassword.Text;
+            string login = txtLogin.Text;
+            string password = txtPassword.Text;
 
             if (login.Equals(""))
             {
@@ -32,7 +32,7 @@ namespace webprog
             }
         }
 
-        private Boolean passwordCorrect(String login, String password)
+        private Boolean passwordCorrect(string login, string password)
         {
             Boolean retVal = false;
             LoginService loginService = new LoginService();

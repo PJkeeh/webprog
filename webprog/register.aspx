@@ -27,7 +27,7 @@
        <asp:TextBox TextMode="password" ID="txtPassword2" runat="server"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="btnRegister" runat="server" Text="Button" OnClick="btnRegister_Click" />
+        <asp:Button ID="btnRegister" runat="server" Text="Registreer" OnClick="btnRegister_Click" />
     </p>
     </form>
 </asp:Content>

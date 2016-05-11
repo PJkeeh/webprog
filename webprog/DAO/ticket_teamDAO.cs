@@ -10,7 +10,7 @@ namespace webprog.DAO
 {
     public class Ticket_teamDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -19,7 +19,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket_team> retVal = new List<Ticket_team>();
 
-            String strSQL = "SELECT * FROM ticket_team where team_id = @team_id;";
+            string strSQL = "SELECT * FROM ticket_team where team_id = @team_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@team_id", team_id);

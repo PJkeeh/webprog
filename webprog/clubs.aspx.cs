@@ -22,7 +22,7 @@ namespace webprog
             m = new MatchService();
             teams = c.getClubs();
 
-            String club = Request.QueryString["club"];
+            string club = Request.QueryString["club"];
             int selected = 0;
 
             if (teams.Count == 0)
@@ -74,7 +74,7 @@ namespace webprog
                     if (i == 5)
                         break;
                     matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
-                    matchesID.InnerHtml += "<p>" + String.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</p>";
+                    matchesID.InnerHtml += "<p>" + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</p>";
                 }
             }
         }

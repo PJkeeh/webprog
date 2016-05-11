@@ -9,7 +9,7 @@ namespace webprog.DAO
 
     public class LoginDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -20,7 +20,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Login> retVal = new List<Login>();
 
-            String strSQL = "SELECT * FROM login;";
+            string strSQL = "SELECT * FROM login;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 
@@ -46,12 +46,50 @@ namespace webprog.DAO
             }
         }
 
-        public Login getLogin(String login)
+        public string getHash(Login login)
+        {
+            return getHash(login.name);
+        }
+        public string getHash(string login)
+        {
+            string retVal = null;
+
+            cnn = new SqlConnection(dbLoc);
+
+            string strSQL = "SELECT password FROM login where login=@login";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@login", login);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                reader.Read();
+
+                retVal = (string)reader[0];
+
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
+        public Login getLogin(string login)
         {
             cnn = new SqlConnection(dbLoc);
             Login retVal = null;
 
-            String strSQL = "SELECT * FROM login where login=@login;";
+            string strSQL = "SELECT * FROM login where login=@login;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@login", login);
@@ -78,17 +116,16 @@ namespace webprog.DAO
             }
         }
 
-        public Login setLogin(String login, String hash, String email)
+        public Login setLogin(string login, string hash, string email)
         {
             //Should not have to be used
             return setLogin(login, hash, null , email);
         }
-
-        public Login setLogin(String login, String hash, String naam, String email)
+        public Login setLogin(string login, string hash, string naam, string email)
         {
             cnn = new SqlConnection(dbLoc);
 
-            String strSQL = "insert into login values (@login, @hash,@naam,@email);";
+            string strSQL = "insert into login values (@login, @hash,@naam,@email);";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@login", login);
@@ -116,10 +153,35 @@ namespace webprog.DAO
             
         }
 
+        public void changePassword(string login, string hash)
+        {
+            cnn = new SqlConnection(dbLoc);
+
+            string strSQL = "UPDATE login SET password=@hash where login=@login";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@login", login);
+            com.Parameters.AddWithValue("@hash", hash);
+
+            try
+            {
+                cnn.Open();
+                com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
         private Login CreateLogin(SqlDataReader reader)
         {
             //Cleanup This code
-            String name = null;
+            string name = null;
             if(reader["name"] != null)
             {
                 name = Convert.ToString(reader["name"]);

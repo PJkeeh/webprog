@@ -13,7 +13,7 @@ namespace webprog
                 && loginService.getLogin((string)Session["username"]) != null);
         }
 
-        public String getLogin()
+        public string getLogin()
         {
             return (string)Session["username"];
         }

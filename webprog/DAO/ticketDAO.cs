@@ -10,7 +10,7 @@ namespace webprog.DAO
 {
     public class TicketDAO
     {
-        private String dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
+        private string dbLoc = ConfigurationManager.ConnectionStrings["webprog"].ConnectionString;
         private SqlConnection cnn;
         SqlDataReader reader;
 
@@ -24,7 +24,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket> retVal = new List<Ticket>();
 
-            String strSQL = "SELECT * FROM ticket where match_id = @match_id;";
+            string strSQL = "SELECT * FROM ticket where match_id = @match_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@match_id", id);
@@ -57,7 +57,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket> retVal = new List<Ticket>();
 
-            String strSQL = "SELECT * FROM ticket where login = @login;";
+            string strSQL = "SELECT * FROM ticket where login = @login;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@login", username.Trim());
@@ -129,7 +129,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Ticket> retVal = new List<Ticket>();
 
-            String strSQL = "SELECT * FROM ticket where login = @login and match_id = @match_id;";
+            string strSQL = "SELECT * FROM ticket where login = @login and match_id = @match_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@login", username);
@@ -162,8 +162,8 @@ namespace webprog.DAO
         {
             cnn = new SqlConnection(dbLoc);
             Ticket retVal = new Ticket();
-            
-            String strSQL = "INSERT INTO ticket VALUES (@ticket_type, @match_id, @login)";
+
+            string strSQL = "INSERT INTO ticket VALUES (@ticket_type, @match_id, @login)";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
             com.Parameters.AddWithValue("@ticket_type", t.ticket_type.id);

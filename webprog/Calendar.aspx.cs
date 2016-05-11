@@ -16,7 +16,7 @@ namespace webprog
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String club = Request.QueryString["club"];
+            string club = Request.QueryString["club"];
             int selected;
 
             if(club == null || club.Equals("") || Int32.TryParse(club, out selected) == false)
@@ -44,7 +44,7 @@ namespace webprog
                     if (i == 5)
                         break;
                     matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
-                    matchesID.InnerHtml += "<p>" + String.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + " </p>";
+                    matchesID.InnerHtml += "<p>" + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + " </p>";
                 }
             }
         }

@@ -6,9 +6,9 @@ namespace webprog.Domain
     {
         public int id { get; set; }
 
-        public String name { get; set; }
+        public string name { get; set; }
 
-        public String description { get; set; }
+        public string description { get; set; }
 
         public override string ToString()
         {

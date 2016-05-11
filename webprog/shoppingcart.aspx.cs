@@ -27,7 +27,7 @@ namespace webprog
 
                 List<Match> matches = countMatches(shoppingCart);
 
-                String error = allowedToBuy(shoppingCart);
+                string error = allowedToBuy(shoppingCart);
 
                 if (error != null)
                 {
@@ -38,7 +38,7 @@ namespace webprog
                 for (int i = 0; i < matches.Count; i++)
                 {
                     cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name
-                        + " " + String.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</h2>";
+                        + " " + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</h2>";
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
                         int amount = 0;
@@ -106,10 +106,10 @@ namespace webprog
             return retVal;
         }
 
-        private String allowedToBuy(List<Ticket> cart)
+        private string allowedToBuy(List<Ticket> cart)
         {
-            String retVal = null;
-            List<String> errors = new List<String>();
+            string retVal = null;
+            List<string> errors = new List<string>();
 
             Boolean failed = false;
             for (int i = 0; i < cart.Count; i++)
@@ -153,7 +153,7 @@ namespace webprog
             {
                 List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
 
-                String error = allowedToBuy(shoppingCart);
+                string error = allowedToBuy(shoppingCart);
                 if (allowedToBuy(shoppingCart) == null)
                 {
                     List<Ticket> bought = buy_tickets();
@@ -166,7 +166,7 @@ namespace webprog
 
         private void send_mail(Domain.Login login, List<Ticket> t)
         {
-            String mail = null;
+            string mail = null;
             if (login.name != null && login.name.Trim() != "")
                 mail = "Beste " + login.name + "\n";
             else
@@ -176,7 +176,7 @@ namespace webprog
             for (int i = 0; i < t.Count; i++)
             {
                 mail += "----------------------------------------------------------------\n"; 
-                mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + String.Format("{0:dd-MM-yyyy}", t[i].match.date) + " " + t[i].id + "\n";
+                mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + string.Format("{0:dd-MM-yyyy}", t[i].match.date) + " " + t[i].id + "\n";
             }
 
             mail += "----------------------------------------------------------------\n";

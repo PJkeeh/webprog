@@ -69,12 +69,14 @@
     <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="deleteShopping.aspx" />
+    <Content Include="forgotPassword.aspx" />
     <Content Include="img\remove.png" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
     <Content Include="js\remove_empty.js" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="newPassword.aspx" />
     <Content Include="packages.config" />
     <Content Include="Masterpage\Site1.Master" />
     <None Include="Properties\PublishProfiles\FTP Azure.pubxml" />
@@ -88,11 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clubs.aspx" />
+    <Content Include="recoverPassword.aspx" />
     <Content Include="register.aspx" />
     <Content Include="shoppingcart.aspx" />
     <Content Include="stadion.aspx" />
     <Content Include="ticketSale.aspx" />
     <Content Include="ticketView.aspx" />
+    <Content Include="updatePassword.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -142,8 +146,22 @@
     <Compile Include="BLL\clubService.cs" />
     <Compile Include="Domain\ticket_team.cs" />
     <Compile Include="Domain\ticket_type.cs" />
+    <Compile Include="forgotPassword.aspx.cs">
+      <DependentUpon>forgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forgotPassword.aspx.designer.cs">
+      <DependentUpon>forgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="masterpageFunctions.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newPassword.aspx.cs">
+      <DependentUpon>newPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newPassword.aspx.designer.cs">
+      <DependentUpon>newPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="pageFunctions.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -176,6 +194,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="recoverPassword.aspx.cs">
+      <DependentUpon>recoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="recoverPassword.aspx.designer.cs">
+      <DependentUpon>recoverPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -211,6 +236,13 @@
     </Compile>
     <Compile Include="ticketView.aspx.designer.cs">
       <DependentUpon>ticketView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="updatePassword.aspx.cs">
+      <DependentUpon>updatePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="updatePassword.aspx.designer.cs">
+      <DependentUpon>updatePassword.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
