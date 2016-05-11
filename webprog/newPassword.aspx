@@ -5,12 +5,12 @@
         <form runat="server">
         <p>
             <label class="registerLabel">Nieuw wachtwoord:</label>
-            <asp:TextBox ID="txtNewPassword" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNewPassword" runat="server" TextMode="password"></asp:TextBox>
             <label id="lblNewPassError" runat="server" class="errorLabel"></label>
         </p>
         <p>
             <label class="registerLabel">herhaal nieuw wachtwoord:</label>
-            <asp:TextBox ID="txtNewPassword2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtNewPassword2" runat="server" TextMode="password"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="btnChangePassword" runat="server" Text="Aanpassen" OnClick="btnChangePassword_Click"/>
