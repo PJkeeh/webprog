@@ -70,6 +70,7 @@
     <Content Include="css\styles.css" />
     <Content Include="deleteShopping.aspx" />
     <Content Include="forgotPassword.aspx" />
+    <Content Include="img\jpl-stier.png" />
     <Content Include="img\remove.png" />
     <Content Include="js\jquery-2.2.2.min.js" />
     <Content Include="js\navbar.js" />
