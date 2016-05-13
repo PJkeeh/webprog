@@ -12,11 +12,11 @@ namespace webprog
     {
         private ClubService c;
         private MatchService m;
-        private List<Club> teams;
-        private List<Match> matches;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            List<Club> teams;
+            List<Match> matches;
             c = new ClubService();
             m = new MatchService();
             teams = c.getClubs();
@@ -42,7 +42,7 @@ namespace webprog
                     matches = m.getAllComingMatchesOfTeam(selected);
 
                     fillMatchesDiv(matches);
-                    if(loggedIn())
+                    if (loggedIn())
                         fillAboDiv(selected);
                 }
 
@@ -53,36 +53,44 @@ namespace webprog
             }
         }
 
+        private void fillClubDiv(int id)
+        {
+            Club team = c.getClub(id);
+            clubSelected.InnerHtml = "<h1>" + team.name + "</h1>";
+            clubSelected.InnerHtml += "<p>" + team.description + "</p>";
+            clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + team.stadion.id + "'>" + team.stadion.name + ".</a>";
+
+            matchesID.InnerHtml = "<h1><a href=" + Page.ResolveUrl("~/Calendar.aspx?club=" + team.id) + ">Matches</a></h1>";
+        }
+
         private void fillAboDiv(int club)
         {
             LoginService loginservice = new LoginService();
+            SeizoenService seizoenservice = new SeizoenService();
+            Club team = c.getClub(club);
 
             Login login = loginservice.getLogin(getLogin());
+            Seizoen seizoen = seizoenservice.getCurrent();
 
-            if(login != null)
+            if (seizoen == null)
+            {
+                seizoen = seizoenservice.getNext();
+            }
+            if (login != null && seizoen != null)
             {
                 AboService aboservice = new AboService();
 
-                Abonnement abo = aboservice.getAbonnement(teams.ElementAt(club), login);
+                Abonnement abo = aboservice.getAbonnement(team, login, seizoen);
 
-                if(abo == null)
+                if (abo == null)
                 {
                     abonnement.InnerHtml = "Je hebt geen abonnement voor dit team.";
                 }
                 else
                 {
-                    abonnement.InnerHtml = "Je hebt een abonnement voor dit team.";
+                    abonnement.InnerHtml = "Je hebt een abonnement voor het seizoen van " + abo.seizoen;
                 }
             }
-        }
-
-        private void fillClubDiv(int id)
-        {
-            clubSelected.InnerHtml = "<h1>" + teams.ElementAt(id).name + "</h1>";
-            clubSelected.InnerHtml += "<p>" + teams.ElementAt(id).description + "</p>";
-            clubSelected.InnerHtml += "<p>Meer informatie over het <a href='stadion.aspx?stadion=" + teams.ElementAt(id).stadion.id + "'>" + teams.ElementAt(id).stadion.name + ".</a>";
-
-            matchesID.InnerHtml = "<h1><a href=" + Page.ResolveUrl("~/Calendar.aspx?club=" + teams.ElementAt(id).id) + ">Matches</a></h1>";
         }
 
         private void fillMatchesDiv(List<Match> matches)
