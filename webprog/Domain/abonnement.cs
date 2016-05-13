@@ -16,5 +16,6 @@ namespace webprog.Domain
         public Seizoen seizoen { get; set; }
 
         public Ticket_type ticket_type { get; set; }
+        
     }
 }
