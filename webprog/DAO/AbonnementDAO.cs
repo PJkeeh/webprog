@@ -82,6 +82,39 @@ namespace webprog.DAO
             }
         }
 
+        public Abonnement getAbo(Club c, Login l)
+        {
+            cnn = new SqlConnection(dbLoc);
+           Abonnement retVal = null;
+
+            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_login=@login;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", c.id);
+            com.Parameters.AddWithValue("@login", l.login);
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal=CreateAbonnement(reader); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+
         public List<Abonnement> getAll()
         {
             cnn = new SqlConnection(dbLoc);
@@ -148,19 +181,19 @@ namespace webprog.DAO
             }
         }
 
-        public Abonnement CreateAbonnement(SqlDataReader reader)
+        private Abonnement CreateAbonnement(SqlDataReader reader)
         {
             ClubDAO clubDAO = new ClubDAO();
             LoginDAO loginDAO = new LoginDAO();
             Ticket_typeDAO ticket_typeDAO = new Ticket_typeDAO();
+            SeizoenDAO seizoenDAO = new SeizoenDAO();
 
             return new Abonnement
             {
                 abo_id = Convert.ToInt32(reader["abo_id"]),
                 club = clubDAO.getClub(Convert.ToInt32(reader["abo_team_id"])),
                 login = loginDAO.getLogin(Convert.ToString(reader["abo_login"])),
-                startDate = Convert.ToDateTime(reader["abo_start_date"]),
-                endDate = Convert.ToDateTime(reader["abo_end_date"]),
+                seizoen = seizoenDAO.getByID(Convert.ToInt32(reader["abo_seizoen"])),
                 ticket_type = ticket_typeDAO.getTicket_type(Convert.ToInt32(reader["abo_ticket_type"])),
             };
         }

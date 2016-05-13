@@ -90,13 +90,14 @@ namespace webprog
                                 j = 1;
                             }
 
+                            float price = ticketService.getTicket_TypePrice(tt, m.homeTeam);
                             if (intTickets.ElementAt(i)[1] == intTickets.ElementAt(i)[2])
                             {
-                                innerHTMLs[j] += "<p>" + club.name +": " + tt.name.Trim() + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") </p>";
+                                innerHTMLs[j] += "<p>" + club.name +": " + tt.name.Trim() + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") € " +price +"</p>";
                             }
                             else
                             {
-                                innerHTMLs[j] += "<p><a href=\"ticketSale.aspx?ticket=" + tt.id + "&match=" + m.id + "\">" + club.name.Trim()+": " + tt.name   + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ")</a></p>";
+                                innerHTMLs[j] += "<p><a href=\"ticketSale.aspx?ticket=" + tt.id + "&match=" + m.id + "\">" + club.name.Trim()+": " + tt.name   + " (" + intTickets.ElementAt(i)[1].ToString() + "/" + intTickets.ElementAt(i)[2].ToString() + ") € "+price+"</a></p>";
                             }
                         }
 

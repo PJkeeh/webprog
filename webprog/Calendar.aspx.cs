@@ -19,7 +19,7 @@ namespace webprog
             string club = Request.QueryString["club"];
             int selected;
 
-            if(club == null || club.Equals("") || Int32.TryParse(club, out selected) == false)
+            if (club == null || club.Equals("") || Int32.TryParse(club, out selected) == false)
             {
                 matches = matchService.getAllMatches();
             }
@@ -39,12 +39,41 @@ namespace webprog
             }
             else
             {
-                for (int i = 0; i < matches.Count; i++)
+                SeizoenService seizoenService = new SeizoenService();
+                List<Seizoen> seizoenen = new List<Seizoen>();
+
+                if ( matches.Count < 10) { 
+
+                     seizoenen = seizoenService.getAll();
+                }
+                else
                 {
-                    if (i == 5)
-                        break;
-                    matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
-                    matchesID.InnerHtml += "<p>" + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + " </p>";
+                    Seizoen s;
+                    if (seizoenService.getCurrent() != null)
+                        s = seizoenService.getCurrent();
+                    else
+                        s = seizoenService.getNext();
+                    seizoenen.Add(s);
+                }
+
+                for (int s = 0; s < seizoenen.Count; s++)
+                {
+                    Boolean header = false; 
+
+                    for (int i = 0; i < matches.Count; i++)
+                    {
+                        if (matches.ElementAt(i).date.Date >= seizoenen.ElementAt(s).startDate.Date
+                        && matches.ElementAt(i).date.Date < seizoenen.ElementAt(s).endDate.Date)
+                        {
+                            if (!header)
+                            {
+                                matchesID.InnerHtml += "<h1>" + seizoenen.ElementAt(s).startDate.ToShortDateString() + " - " + seizoenen.ElementAt(s).endDate.ToShortDateString() + "</h1>";
+                                header = true;
+                            }
+                            matchesID.InnerHtml += "<h2><a href=\"ticketView.aspx?match=" + matches.ElementAt(i).id + "\">" + matches.ElementAt(i).homeTeam.name + " - " + matches.ElementAt(i).awayTeam.name + "</a></h2>";
+                            matchesID.InnerHtml += "<p>" + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + " </p>";
+                        }
+                    }
                 }
             }
         }

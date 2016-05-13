@@ -21,7 +21,7 @@ namespace webprog.DAO
             cnn = new SqlConnection(dbLoc);
             List<Stadion> retVal = new List<Stadion>();
 
-            string strSQL = "SELECT * FROM stadion;";
+            string strSQL = "SELECT * FROM stadion order by seizoen_start;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
 

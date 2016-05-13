@@ -21,6 +21,19 @@ namespace webprog.BLL
             return new Ticket_typeDAO().getAllTicket_types();
         }
 
+        public float getTicket_TypePrice(Ticket_type ticket_type, Club c)
+        {
+            Ticket_team ttm = new Ticket_teamDAO().getTicket_team(ticket_type.id, c.id);
+            if(ttm  != null)
+            {
+                return ttm.price;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public int getAmountOfTicket_types()
         {
             return getTicket_types().Count;

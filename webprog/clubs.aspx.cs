@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using webprog.Domain;
 using webprog.BLL;
 
 namespace webprog
 {
-    public partial class clubs : System.Web.UI.Page
+    public partial class clubs : pageFunctions
     {
         private ClubService c;
         private MatchService m;
@@ -43,11 +42,36 @@ namespace webprog
                     matches = m.getAllComingMatchesOfTeam(selected);
 
                     fillMatchesDiv(matches);
+                    if(loggedIn())
+                        fillAboDiv(selected);
                 }
 
                 if (!Page.IsPostBack)
                 {
                     fillDDL(teams);
+                }
+            }
+        }
+
+        private void fillAboDiv(int club)
+        {
+            LoginService loginservice = new LoginService();
+
+            Login login = loginservice.getLogin(getLogin());
+
+            if(login != null)
+            {
+                AboService aboservice = new AboService();
+
+                Abonnement abo = aboservice.getAbonnement(teams.ElementAt(club), login);
+
+                if(abo == null)
+                {
+                    abonnement.InnerHtml = "Je hebt geen abonnement voor dit team.";
+                }
+                else
+                {
+                    abonnement.InnerHtml = "Je hebt een abonnement voor dit team.";
                 }
             }
         }

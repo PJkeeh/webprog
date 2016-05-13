@@ -48,6 +48,42 @@ namespace webprog.DAO
             }
         }
 
+        public Ticket_team getTicket_team(int ticket_type_id, int team_id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Ticket_team retVal = new Ticket_team();
+
+            string strSQL = "SELECT * FROM ticket_team where team_id = @team_id and ticket_type_id = @tt_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", team_id);
+            com.Parameters.AddWithValue("@tt_id", ticket_type_id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                {
+                    retVal=CreateTicket_team(reader);
+                    break;
+                }
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
         private Ticket_team CreateTicket_team(SqlDataReader reader)
         {
             return new Ticket_team

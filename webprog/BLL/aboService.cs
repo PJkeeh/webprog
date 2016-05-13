@@ -25,6 +25,11 @@ namespace webprog.BLL
         {
             return new AbonnementDAO().getTicket_type(id);
         }
+
+        public Abonnement getAbonnement(Club c, Login l)
+        {
+            return dao.getAbo(c, l);
+        }
         
     }
 }

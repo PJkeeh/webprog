@@ -13,9 +13,7 @@ namespace webprog.Domain
 
         public Login login { get; set; }
 
-        public DateTime startDate { get; set; }
-
-        public DateTime endDate { get; set; }
+        public Seizoen seizoen { get; set; }
 
         public Ticket_type ticket_type { get; set; }
     }

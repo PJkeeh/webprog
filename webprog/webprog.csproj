@@ -106,6 +106,7 @@
   <ItemGroup>
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
+    <Compile Include="BLL\seizoenService.cs" />
     <Compile Include="BLL\stadionService.cs" />
     <Compile Include="BLL\aboService.cs" />
     <Compile Include="BLL\ticketService.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="DAO\AbonnementDAO.cs" />
     <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
+    <Compile Include="DAO\seizoenDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
     <Compile Include="DAO\ticketDAO.cs" />
     <Compile Include="DAO\ticket_teamDAO.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Domain\abonnement.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
+    <Compile Include="Domain\Seizoen.cs" />
     <Compile Include="Domain\ticket.cs" />
     <Compile Include="Domain\stadion.cs" />
     <Compile Include="Domain\club.cs" />
