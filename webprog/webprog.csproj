@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="abonnement.aspx" />
     <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="deleteShopping.aspx" />
@@ -104,6 +105,13 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="abonnement.aspx.cs">
+      <DependentUpon>abonnement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="abonnement.aspx.designer.cs">
+      <DependentUpon>abonnement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
     <Compile Include="BLL\seizoenService.cs" />
