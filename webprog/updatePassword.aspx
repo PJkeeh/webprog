@@ -12,7 +12,7 @@
         <label id="lblNewPassError" runat="server" class="errorLabel"></label>
     </p>
     <p>
-        <label class="registerLabel">herhaal nieuw wachtwoord:</label>
+        <label class="registerLabel">Herhaal nieuw wachtwoord:</label>
         <asp:TextBox ID="txtNewPassword2" runat="server" TextMode="password"></asp:TextBox>
     </p>
     <p>
