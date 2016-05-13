@@ -24,7 +24,7 @@ namespace webprog.BLL
         public float getTicket_TypePrice(Ticket_type ticket_type, Club c)
         {
             Ticket_team ttm = new Ticket_teamDAO().getTicket_team(ticket_type.id, c.id);
-            if(ttm  != null)
+            if (ttm != null)
             {
                 return ttm.price;
             }
@@ -57,7 +57,17 @@ namespace webprog.BLL
             List<Ticket> after = dao.getAllOfLogin(login.login.Trim());
 
             return after.Except(before).ToList();
-            
+
+        }
+
+        public List<Ticket> getAllOfLogin(Login l)
+        {
+            return getAllOfLogin(l.name.Trim());
+        }
+
+        public List<Ticket> getAllOfLogin(String login)
+        {
+            return dao.getAllOfLogin(login);
         }
     }
 }

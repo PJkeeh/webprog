@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using webprog.BLL;
 using webprog.Domain;
 
@@ -116,6 +113,8 @@ namespace webprog
 
         private string allowedToBuy(List<Ticket> cart)
         {
+            List<Ticket> tickets = new TicketService().getAllOfLogin(getLogin());
+
             string retVal = null;
             List<string> errors = new List<string>();
 
@@ -135,6 +134,18 @@ namespace webprog
                         {
                             errors.Add("Je kan geen verschillende matchen bekijken op dezelfde dag.");
                             failed = true;
+                        }
+                    }
+                }
+                if (!failed)
+                {
+                    for (int j = 0; j < tickets.Count; j++)
+                    {
+                        if (cart[i].match.date.Date == tickets[j].match.date.Date && cart[i].match.id != tickets[j].match.id)
+                        {
+                            failed = true;
+                            errors.Add("Je hebt al een ticket gekocht voor een andere match op " + string.Format("{0:dd-MM-yyyy}", cart[i].match.date.Date));
+                            break;
                         }
                     }
                 }
