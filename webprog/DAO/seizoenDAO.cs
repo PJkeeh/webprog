@@ -114,12 +114,16 @@ namespace webprog.DAO
 
         private Seizoen createSeizoen(SqlDataReader reader)
         {
-            return new Seizoen
+            Seizoen retVal = new Seizoen
             {
                 id = Convert.ToInt32(reader["seizoen_id"]),
                 endDate = Convert.ToDateTime(reader["seizoen_einde"]),
                 startDate = Convert.ToDateTime(reader["seizoen_start"]),
             };
+
+            retVal.updateToString();
+
+            return retVal;
         }
     }
 }
