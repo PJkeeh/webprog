@@ -70,10 +70,10 @@ namespace webprog
                                 + "&m=+" + matches[i].id
                                 + "\"><img src=\"img/remove.png\" height=\"12px\" /></a>";
                             if (amount == 1)
-                                cart.InnerHtml += "<p><b>" + amount + "</b> ticket voor "
+                                cart.InnerHtml += "<b>" + amount + "</b> ticket voor "
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "(" + amount + " * € " + price + " = <b>" + (amount * price).ToString("0.00") + ")</b></p>";
                             else
-                                cart.InnerHtml += "<p><b>" + amount + "</b> tickets voor "
+                                cart.InnerHtml += "<b>" + amount + "</b> tickets voor "
                                     + club.name.Trim() + ": " + ticketTypes[k].name + "(" + amount + " * € " + price + " = <b>" + (amount * price).ToString("0.00") + ")</b></p>";
                             totalPrice += amount * price;
                         }
