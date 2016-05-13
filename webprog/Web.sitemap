@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="index.aspx" title="Startpagina">
+    <siteMapNode title="Verkoop"  description="" >
+      <siteMapNode url="ticketView.aspx" title="Tickets bekijken"/>
+      <siteMapNode url="ticketSale.aspx" title="Tickets Kopen"/>
+      <siteMapNode url="shoppingcart.aspx" title="Winkelwagen bekijken"/>
+    </siteMapNode>
+
+    <siteMapNode url="clubs.aspx" title="Clubs">
+      <siteMapNode url="stadion.aspx" title="Stadion"/>
+    </siteMapNode>
+
+    <siteMapNode url ="Calendar.aspx" title="Kalender" />
+
+    <siteMapNode url="account.aspx" title="Account">
+      <siteMapNode url="forgotPassword.aspx" title="Wachtwoord vergeten"/>
+      <siteMapNode url="login.aspx" title="Login"/>
+      <siteMapNode url="logout.aspx" title="Logout"/>
+      <siteMapNode url="updatePassword.aspx" title="Wachtwoord wijzigen"/>
+      <siteMapNode url="newPassword.aspx" title="Wachtwoord wijzigen" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

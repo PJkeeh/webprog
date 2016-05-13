@@ -35,8 +35,10 @@
     <div class="clearing"></div>
     <div class="header">
       <div class="logo">
+    <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
         <h1>Voetbal<span>Tickets</span></h1>
       </div>
+        
     </div>
     <div class="page" >
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
