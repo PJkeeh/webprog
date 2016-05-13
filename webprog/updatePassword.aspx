@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage/Site1.Master" AutoEventWireup="true" CodeBehind="updatePassword.aspx.cs" Inherits="webprog.updatePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server" method="post">
+    <form runat="server" method="post" class="content">
     <p>
         <label class="registerLabel">Oud wachtwoord:</label>
         <asp:TextBox ID="txtOldPass" runat="server" TextMode="password"></asp:TextBox>
