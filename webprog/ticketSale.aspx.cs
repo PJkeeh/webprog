@@ -45,7 +45,7 @@ namespace webprog
                     if (tickNum[tt.id][1] < tickNum[tt.id][2])
                     {
                         numBought = ticketService.getTicketsOfLoginOnMatch(getLogin(), m).Count;
-                        content.InnerHtml = "<p>Je hebt al " + numBought + " tickets gekocht. Beschikbaar:" + tickNum[tt.id][1].ToString() + "/" + tickNum[tt.id][2].ToString() + "</p>";
+                        content.InnerHtml = "<p>Je hebt al " + numBought + " tickets gekocht. Beschikbaar: " + tickNum[tt.id][1].ToString() + "/" + tickNum[tt.id][2].ToString() + "</p>";
 
                     }
                     else
