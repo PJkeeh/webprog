@@ -46,5 +46,10 @@ namespace webprog.BLL
 
             return retVal;
         }
+
+        public Seizoen get(int id)
+        {
+            return dao.getByID(id);
+        }
     }
 }
