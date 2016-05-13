@@ -7,7 +7,8 @@
         </div>
         <form id="buyForm" runat="server">
             <p class=".errorLabel" id="errorMessage" runat="server"></p>
-            <input id="amount" type="number" runat="server" />
+            <asp:TextBox TextMode="Number" runat="server" ID="amount" Text="1" min="1" max="10" step="1"/> 
+            <label id="priceLabel" runat="server"></label>
             <br />
             <asp:Button ID="ticket_add" runat="server" Text="Toevoegen aan winkelmandje" OnClick="ticket_add_Click" />
         </form>

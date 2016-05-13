@@ -9,6 +9,7 @@ namespace webprog
     {
         private int numBought = 0;
         private int maxBuy = 10;
+        private float price = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,12 +31,16 @@ namespace webprog
                     TicketService ticketService = new TicketService();
                     MatchService matchService = new MatchService();
 
-                    Ticket_type tt = new TicketService().getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
+                    Ticket_type tt = ticketService.getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
 
                     Match m = matchService.getMatch(Convert.ToInt32(Request.QueryString["match"]));
+
+                    price = ticketService.getTicket_TypePrice(tt, m.homeTeam);
+
                     List<int[]> tickNum = new MatchService().getTicketsAvailable(m);
 
                     contentTitle.InnerHtml = m.homeTeam.name + "- " + m.awayTeam.name + "(" + m.date.ToLongDateString() + ")";
+                    updatePrice();
 
                     if (tickNum[tt.id][1] < tickNum[tt.id][2])
                     {
@@ -54,7 +59,7 @@ namespace webprog
 
         protected void ticket_add_Click(object sender, EventArgs e)
         {
-            int wannaBuy = Convert.ToInt32(amount.Value);
+            int wannaBuy = Convert.ToInt32(amount.Text);
 
             Match m = new MatchService().getMatch(Convert.ToInt32(Request.QueryString["match"]));
             Ticket_type tt = new TicketService().getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
@@ -133,6 +138,11 @@ namespace webprog
             }
 
             return retVal;
+        }
+
+        private void updatePrice()
+        {
+            priceLabel.InnerHtml = " * € " + price.ToString();
         }
     }
 }

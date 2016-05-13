@@ -55,7 +55,16 @@ namespace webprog {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl amount;
+        protected global::System.Web.UI.WebControls.TextBox amount;
+        
+        /// <summary>
+        /// priceLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl priceLabel;
         
         /// <summary>
         /// ticket_add control.

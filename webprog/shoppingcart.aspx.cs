@@ -21,8 +21,9 @@ namespace webprog
             }
             if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
             {
+                TicketService ticketservice = new TicketService();
                 cart.InnerHtml = "";
-                List<Ticket_type> ticketTypes = new TicketService().getTicket_types();
+                List<Ticket_type> ticketTypes = ticketservice.getTicket_types();
                 List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
 
                 List<Match> matches = countMatches(shoppingCart);
@@ -35,10 +36,12 @@ namespace webprog
                     buy.Enabled = false;
                 }
 
+                float totalPrice = 0;
                 for (int i = 0; i < matches.Count; i++)
                 {
                     cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name
                         + " " + string.Format("{0:dd-MM-yyyy}", matches.ElementAt(i).date) + "</h2>";
+
                     for (int k = 0; k < ticketTypes.Count; k++)
                     {
                         int amount = 0;
@@ -54,6 +57,7 @@ namespace webprog
                         }
                         if (amount != 0)
                         {
+
                             Club club = new Club();
                             if (ticketTypes[k].hometeam)
                             {
@@ -63,18 +67,22 @@ namespace webprog
                             {
                                 club = matches[i].homeTeam;
                             }
+
+                            float price = ticketservice.getTicket_TypePrice(ticketTypes[k], club);
                             cart.InnerHtml += "<p><a href=\"deleteShopping.aspx?tt=" + ticketTypes[k].id
                                 + "&m=+" + matches[i].id
                                 + "\"><img src=\"img/remove.png\" height=\"12px\" /></a>";
                             if (amount == 1)
-                                cart.InnerHtml += "<b>" + amount + "</b> ticket voor <b>"
-                                    + club.name.Trim() + ": " + ticketTypes[k].name + "</b></p>";
+                                cart.InnerHtml += "<p><b>" + amount + "</b> ticket voor "
+                                    + club.name.Trim() + ": " + ticketTypes[k].name + "(" + amount + " * € " + price + " = <b>" + (amount * price).ToString("0.00") + ")</b></p>";
                             else
-                                cart.InnerHtml += "<b>" + amount + "</b> ticket(s) voor "
-                                    + club.name.Trim() + ": " + ticketTypes[k].name + "</p>";
+                                cart.InnerHtml += "<p><b>" + amount + "</b> tickets voor "
+                                    + club.name.Trim() + ": " + ticketTypes[k].name + "(" + amount + " * € " + price + " = <b>" + (amount * price).ToString("0.00") + ")</b></p>";
+                            totalPrice += amount * price;
                         }
                     }
                 }
+                cart.InnerHtml += "<p><b>Totaal:</b>" + totalPrice + "</p>";
             }
             else {
                 buy.Enabled = false;
@@ -175,7 +183,7 @@ namespace webprog
                 + "Dit is uw bevestiging voor uw aangekochte tickets. Breng deze bevesting en de bijgevoegde vouchers mee naar het stadion samen met uw identiteitskaart. \n\n";
             for (int i = 0; i < t.Count; i++)
             {
-                mail += "----------------------------------------------------------------\n"; 
+                mail += "----------------------------------------------------------------\n";
                 mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + string.Format("{0:dd-MM-yyyy}", t[i].match.date) + " " + t[i].id + "\n";
             }
 
