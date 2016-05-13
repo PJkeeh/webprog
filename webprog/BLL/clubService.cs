@@ -7,14 +7,22 @@ namespace webprog.BLL
 {
     public class ClubService
     {
+
+        private ClubDAO dao;
         public ClubService()
         {
+            dao= new ClubDAO();
         }
+
 
         public List<Club> getClubs()
         {
-            ClubDAO dao = new ClubDAO();
             return dao.getAll();
+        }
+
+        public Club getClub(int id)
+        {
+            return dao.getClub(id);
         }
     }
 }
