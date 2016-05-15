@@ -52,13 +52,13 @@ namespace webprog
 
                                 if (txtNaam.Text == null || txtNaam.Text.Trim() == "")
                                 {
-                                    loginService.registerLogin(txtLogin.Text, txtPassword.Text, email);
+                                    lblNaamError.InnerHtml = "Geef uw naam in zoals die op uw identiteitskaart staat.";
                                 }
                                 else
                                 {
                                     loginService.registerLogin(txtLogin.Text, txtPassword.Text, txtNaam.Text, email);
+                                    Response.Redirect("index.aspx");
                                 }
-                                Response.Redirect("index.aspx");
                             }
                         }
                     }

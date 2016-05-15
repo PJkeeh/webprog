@@ -180,17 +180,11 @@ namespace webprog.DAO
 
         private Login CreateLogin(SqlDataReader reader)
         {
-            //Cleanup This code
-            string name = null;
-            if(reader["name"] != null)
-            {
-                name = Convert.ToString(reader["name"]);
-            }
             Login retVal = new Login
             {
                 login = Convert.ToString(reader["login"]),
                 password = Convert.ToString(reader["password"]),
-                name = name,
+                name = Convert.ToString(reader["name"]),
                 email = Convert.ToString(reader["e-mail"])
             };
 
