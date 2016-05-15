@@ -5,12 +5,15 @@
       <siteMapNode url="ticketView.aspx" title="Tickets bekijken"/>
       <siteMapNode url="ticketSale.aspx" title="Tickets Kopen"/>
       <siteMapNode url="shoppingcart.aspx" title="Winkelwagen bekijken"/>
+      <siteMapNode url="aboBuy.aspx" title="Abonnement kopen" />
     </siteMapNode>
 
     <siteMapNode url="clubs.aspx" title="Clubs">
       <siteMapNode url="stadion.aspx" title="Stadion"/>
     </siteMapNode>
 
+    <siteMapNode url="abonnement.aspx" title="Abonnementen" />
+    
     <siteMapNode url ="Calendar.aspx" title="Kalender" />
 
     <siteMapNode url="account.aspx" title="Account">
