@@ -9,16 +9,15 @@ namespace webprog
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int matchID;
+            int ttID;
             if (!loggedIn())
             {
                 Response.Redirect("login.aspx");
             }
             else if (!(Request.QueryString["m"] == null
-                || Request.QueryString["tt"] == null))
+                || Request.QueryString["tt"] == null)&&Int32.TryParse(Request.QueryString["m"], out matchID) &&Int32.TryParse(Request.QueryString["tt"], out ttID))
             {
-                int matchID = Convert.ToInt32(Request.QueryString["m"]);
-                int ttID = Convert.ToInt32(Request.QueryString["tt"]);
-
                 if (Session["shoppingCart"] != null)
                 {
                     List<Ticket> cart = (List<Ticket>)Session["shoppingCart"];
@@ -36,6 +35,10 @@ namespace webprog
                     }
                     Session["shoppingCart"] = cart;
                 }
+            }
+            if(Request.QueryString["m"] != null)
+            {
+                Session["abo_cart"] = null;
             }
             Response.Redirect("shoppingcart.aspx");
         }
