@@ -73,8 +73,10 @@ namespace webprog
             }
 
             fillMatchesDiv(matches, seizoenen);
-            fillClubDDL(teams);
-            fillCalendarDDL(seizoenservice.getAll());
+            if (!IsPostBack) { 
+                fillClubDDL(teams);
+                fillCalendarDDL(seizoenservice.getAll());
+            }
         }
 
         private void fillMatchesDiv(List<Match> matches, List<Seizoen> seizoenen)
