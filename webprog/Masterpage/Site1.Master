@@ -19,6 +19,7 @@
       <div class="menu">
         <ul>
           <li><a href="<%= Page.ResolveUrl("~/index.aspx") %>">Start</a></li>
+          <li><a href="<%= Page.ResolveUrl("~/abonnement.aspx") %>">Abonnement</a></li>
           <li><a href="<%= Page.ResolveUrl("~/clubs.aspx") %>">Clubs</a></li>
           <li><a href="<%= Page.ResolveUrl("~/calendar.aspx") %>">Kalender</a></li>
           <li><a href="<%= Page.ResolveUrl("~/shoppingcart.aspx") %>">Winkelwagen</a></li>
