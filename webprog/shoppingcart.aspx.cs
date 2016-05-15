@@ -16,8 +16,12 @@ namespace webprog
             {
                 Response.Redirect("login.aspx");
             }
+            Boolean buyingSomething = false;
+            float totalPrice = 0;
+
             if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
             {
+                buyingSomething = true;
                 TicketService ticketservice = new TicketService();
                 cart.InnerHtml = "";
                 List<Ticket_type> ticketTypes = ticketservice.getTicket_types();
@@ -33,7 +37,6 @@ namespace webprog
                     buy.Enabled = false;
                 }
 
-                float totalPrice = 0;
                 for (int i = 0; i < matches.Count; i++)
                 {
                     cart.InnerHtml += "<h2>" + matches[i].homeTeam.name + "- " + matches[i].awayTeam.name
@@ -79,11 +82,29 @@ namespace webprog
                         }
                     }
                 }
-                cart.InnerHtml += "<p><b>Totaal:</b>" + totalPrice + "</p>";
             }
-            else {
+            if (Session["abo_cart"] != null)
+            {
+                if (!buyingSomething)
+                {
+                    cart.InnerHtml = "";
+                }
+                buyingSomething = true;
+                Abonnement abo = (Abonnement)Session["abo_cart"];
+                float price = new TicketService().getTicket_TypePrice(abo.ticket_type, abo.club) * 5;
+                totalPrice = price;
+                cart.InnerHtml += "<b>1</b> abonnement voor "
+                                    + abo.club.name.Trim() + ": " + abo.ticket_type.name + "(" + 1 + " * € " + price.ToString("0.00") + " = <b>" + price.ToString("0.00") + ")</b></p>";
+
+            }
+            if (!buyingSomething)
+            {
                 buy.Enabled = false;
                 buy.Visible = false;
+            }
+            else
+            {
+                cart.InnerHtml += "<p><b>Totaal:</b>" + totalPrice + "</p>";
             }
         }
 
@@ -168,6 +189,7 @@ namespace webprog
 
         protected void buy_Click(object sender, EventArgs e)
         {
+            Login login = new LoginService().getLogin(getLogin());
             if (Session["shoppingCart"] != null && ((List<Ticket>)Session["shoppingCart"]).Count != 0)
             {
                 List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
@@ -176,11 +198,23 @@ namespace webprog
                 if (allowedToBuy(shoppingCart) == null)
                 {
                     List<Ticket> bought = buy_tickets();
-                    send_mail(new LoginService().getLogin(getLogin()), bought);
+                    send_mail(login, bought);
                     Session["shoppingCart"] = null;
-                    Response.Redirect(Request.Path);
                 }
             }
+
+            if(Session["abo_cart"] != null)
+            {
+                Abonnement abo = (Abonnement)Session["abo_cart"];
+                AboService aboservice = new AboService();
+                if (aboservice.getAbonnement(login, abo.seizoen) == null)
+                {
+                    aboservice.buyAbonnement(abo);
+                    send_mail(login, abo);
+                    Session["abo_cart"] = null;
+                }
+            }
+            Response.Redirect(Request.Path);
         }
 
         private void send_mail(Domain.Login login, List<Ticket> t)
@@ -198,6 +232,33 @@ namespace webprog
                 mail += t[i].match.homeTeam.name.Trim() + " - " + t[i].match.awayTeam.name.Trim() + " - " + string.Format("{0:dd-MM-yyyy}", t[i].match.date) + " " + t[i].id + "\n";
             }
 
+            mail += "----------------------------------------------------------------\n";
+
+            mail += "Gelieve op deze mail niet te antwoorden.\n"
+                + "Bedankt voor uw aankoop!"
+                + "\n\nHet VoetbalTickets team.";
+
+            MailMessage o = new MailMessage("VoetbalTicketsVives@hotmail.com", login.email.Trim(), "Aankoop", mail);
+            NetworkCredential netCred = new NetworkCredential("VoetbalTicketsVives@hotmail.com", "Webprogrammeren");
+            SmtpClient smtpobj = new SmtpClient("smtp.live.com", 587);
+            smtpobj.EnableSsl = true;
+            smtpobj.Credentials = netCred;
+            smtpobj.Send(o);
+            //ADD CATCH;
+        }
+        private void send_mail(Domain.Login login, Abonnement a)
+        {
+            string mail = null;
+            if (login.name != null && login.name.Trim() != "")
+                mail = "Beste " + login.name + "\n";
+            else
+                mail = "Beste " + login.login + "\n";
+            mail += "\n"
+                + "Dit is uw bevestiging voor uw aangekocht "+a.club.name+" abonnement. Breng deze bevesting en de bijgevoegde voucher mee naar het stadion samen met uw identiteitskaart. \n\n";
+            
+            mail += "----------------------------------------------------------------\n";
+            mail += a.abo_id + " " + a.club.name + " " + a.ticket_type + " " + a.login.name;
+            
             mail += "----------------------------------------------------------------\n";
 
             mail += "Gelieve op deze mail niet te antwoorden.\n"
