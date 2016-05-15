@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form runat="server">
         <div class="content">
-            <h1>Shopping cart</h1>
+            <h1>Winkelwagentje</h1>
             <div id="cart" runat="server">
                 Het winkelwagentje is leeg.
             </div>
