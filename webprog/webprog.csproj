@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="abonnement.aspx" />
+    <Content Include="aboBuy.aspx" />
     <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="deleteShopping.aspx" />
@@ -112,6 +113,13 @@
     </Compile>
     <Compile Include="abonnement.aspx.designer.cs">
       <DependentUpon>abonnement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="aboBuy.aspx.cs">
+      <DependentUpon>aboBuy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="aboBuy.aspx.designer.cs">
+      <DependentUpon>aboBuy.aspx</DependentUpon>
     </Compile>
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
