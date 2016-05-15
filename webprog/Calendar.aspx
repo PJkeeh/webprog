@@ -10,15 +10,15 @@
         </div>
         <div id="filter" class="content">
             <form runat="server">
-                <asp:DropDownList ID="ddlSeizoen" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlseizoen_SelectedIndexChanged" AppendDataBoundItems="True">
+                <p><asp:DropDownList ID="ddlSeizoen" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlseizoen_SelectedIndexChanged" AppendDataBoundItems="True">
                     <asp:ListItem Value="-1">Alle seizoenen</asp:ListItem>
 
-                </asp:DropDownList>
-                <br />
+                </asp:DropDownList></p>
+                <p>
                 <asp:DropDownList ID="ddlClubs" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlClubs_SelectedIndexChanged" AppendDataBoundItems="True">
                     <asp:ListItem Value="-1">Alle clubs</asp:ListItem>
 
-                </asp:DropDownList>
+                </asp:DropDownList></p>
             </form>
         </div>
    </div>
