@@ -49,6 +49,43 @@ namespace webprog.DAO
             }
         }
 
+        public List<Abonnement> getAllOfTeam(int team_id, Seizoen s)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Abonnement> retVal = new List<Abonnement>();
+
+            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_seizoen=@seizoen_id";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", team_id);
+            com.Parameters.AddWithValue("@seizoen_id", s.id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateAbonnement(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+        public List<Abonnement> getAllOfTeam(Club club, Seizoen s)
+        {
+            return getAllOfTeam(club.id, s);
+        }
         public List<Abonnement> getAllOfTeam(int team_id)
         {
             cnn = new SqlConnection(dbLoc);
@@ -81,10 +118,124 @@ namespace webprog.DAO
                 reader.Close();
             }
         }
+        public List<Abonnement> getAllOfTeam(Club club)
+        {
+            return getAllOfTeam(club.id);
+        }
+
+        public List<Abonnement> getAllOfTicketType(int team_id, Seizoen s, Ticket_type tt)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Abonnement> retVal = new List<Abonnement>();
+
+            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_seizoen=@seizoen_id and abo_ticket_type=@abo_tt_id";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@team_id", team_id);
+            com.Parameters.AddWithValue("@seizoen_id", s.id);
+            com.Parameters.AddWithValue("@abo_tt_id", tt.id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateAbonnement(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+
+        public List<Abonnement> getAllOfLogin(string login)
+        {
+            cnn = new SqlConnection(dbLoc);
+            List<Abonnement> retVal = new List<Abonnement>();
+
+            string strSQL = "SELECT * FROM abonnement where abo_login=@login;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@login", login);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal.Add(CreateAbonnement(reader)); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+        public List<Abonnement> getAllOfLogin(Login login)
+        {
+            return getAllOfLogin(login.login);
+        }
+
+        public Abonnement getOfLoginInSeason(string login, Seizoen s)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Abonnement retVal = null;
+
+            string strSQL = "SELECT * FROM abonnement where abo_login=@login and abo_login=@login and abo_seizoen=@seizoen_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@login", login);
+            com.Parameters.AddWithValue("@seizoen_id", s.id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal=CreateAbonnement(reader); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
+        public Abonnement getOfLoginInSeason(Login login, Seizoen s)
+        {
+            return getOfLoginInSeason(login.login, s);
+        }
 
         public Abonnement getAbo(Club c, Login l, Seizoen s)
         {
-            cnn = new SqlConnection(dbLoc);
+           cnn = new SqlConnection(dbLoc);
            Abonnement retVal = null;
 
             string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_login=@login and abo_seizoen=@seizoen_id;";
@@ -150,8 +301,7 @@ namespace webprog.DAO
                 reader.Close();
             }
         }
-
-
+        
         public List<Abonnement> getAll()
         {
             cnn = new SqlConnection(dbLoc);
@@ -184,28 +334,24 @@ namespace webprog.DAO
             }
         }
 
-        public List<Abonnement> getAllOfTeam(int team_id, DateTime seasonDate)
+        public void setAbonnement(Abonnement a)
         {
             cnn = new SqlConnection(dbLoc);
-            List<Abonnement> retVal = new List<Abonnement>();
+            Abonnement retVal = new Abonnement();
 
-            string strSQL = "SELECT * FROM abonnement where abo_team_id=@team_id and abo_start_date<=@seasonDate and abo_end_date>@seasonDate;";
+            string strSQL = "INSERT INTO abonnement VALUES "
+                +"(@abo_team_id, @abo_login, @abo_seizoen, @abo_ticket_type)";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
-            com.Parameters.AddWithValue("@team_id", team_id);
-            com.Parameters.AddWithValue("@seasonDate", seasonDate.Date);
+            com.Parameters.AddWithValue("@abo_team_id", a.club.id);
+            com.Parameters.AddWithValue("@abo_login", a.login.login);
+            com.Parameters.AddWithValue("@abo_seizoen", a.seizoen.id);
+            com.Parameters.AddWithValue("@abo_ticket_type", a.ticket_type.id);
 
             try
             {
                 cnn.Open();
-                reader = com.ExecuteReader();
-
-                // Call Read before accessing data
-                while (reader.Read())
-                { retVal.Add(CreateAbonnement(reader)); }
-
-                // Call close when done reading
-                return retVal;
+                com.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -213,8 +359,8 @@ namespace webprog.DAO
             }
             finally
             {
-                cnn.Close();
                 reader.Close();
+                cnn.Close();
             }
         }
 
