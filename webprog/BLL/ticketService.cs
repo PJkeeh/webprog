@@ -64,10 +64,15 @@ namespace webprog.BLL
         {
             return getAllOfLogin(l.name.Trim());
         }
-
         public List<Ticket> getAllOfLogin(String login)
         {
             return dao.getAllOfLogin(login);
+        }
+
+        public List<Ticket_team> getAllTicketTeam(Club c)
+        {
+            Ticket_teamDAO ttmDao = new Ticket_teamDAO();
+            return ttmDao.getAllOfTeam(c.id);
         }
     }
 }
