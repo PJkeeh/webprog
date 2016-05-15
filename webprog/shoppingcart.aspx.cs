@@ -93,7 +93,8 @@ namespace webprog
                 Abonnement abo = (Abonnement)Session["abo_cart"];
                 float price = new TicketService().getTicket_TypePrice(abo.ticket_type, abo.club) * 5;
                 totalPrice = price;
-                cart.InnerHtml += "<b>1</b> abonnement voor "
+                cart.InnerHtml += "<a href='deleteShopping.aspx?abo=1'>"
+                                + "<img src=\"img/remove.png\" height=\"12px\" /></a><b>1</b> abonnement voor "
                                     + abo.club.name.Trim() + ": " + abo.ticket_type.name + "(" + 1 + " * € " + price.ToString("0.00") + " = <b>" + price.ToString("0.00") + ")</b></p>";
 
             }
@@ -257,7 +258,7 @@ namespace webprog
                 + "Dit is uw bevestiging voor uw aangekocht "+a.club.name+" abonnement. Breng deze bevesting en de bijgevoegde voucher mee naar het stadion samen met uw identiteitskaart. \n\n";
             
             mail += "----------------------------------------------------------------\n";
-            mail += a.abo_id + " " + a.club.name + " " + a.ticket_type + " " + a.login.name;
+            mail += a.abo_id + " " + a.club.name + " " + a.ticket_type.name + " " + a.login.name;
             
             mail += "----------------------------------------------------------------\n";
 
