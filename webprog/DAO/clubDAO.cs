@@ -86,7 +86,7 @@ namespace webprog.DAO
             Club retVal = new Club
             {
                 id = Convert.ToInt32(reader["team_id"]),
-                name = Convert.ToString(reader["team_name"]),
+                name = Convert.ToString(reader["team_name"]).Trim(),
                 description = Convert.ToString(reader["team_description"]),
                 stadion = setStadion(Convert.ToInt32(reader["team_stadion_id"]))
             };
