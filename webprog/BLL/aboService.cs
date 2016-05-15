@@ -20,6 +20,20 @@ namespace webprog.BLL
         {
             return dao.getAllOfTeam(id);
         }
+        public List<Abonnement> getAllOfTeam(int id, Seizoen s)
+        {
+            return dao.getAllOfTeam(id, s);
+        }
+
+        public List<Abonnement> getAllOfTicketType(Club c, Seizoen s, Ticket_type tt)
+        {
+            return dao.getAllOfTicketType(c.id, s, tt);
+        }
+
+        public List<Abonnement> getAllOfTicketTeam(Seizoen s, Ticket_team ttm)
+        {
+            return dao.getAllOfTicketType(ttm.club.id, s, ttm.ticket_type);
+        }
 
         public List<Abonnement> getTicket_type(int id)
         {
@@ -34,6 +48,21 @@ namespace webprog.BLL
         public Abonnement getAbonnement(Club c, Login l, Seizoen s)
         {
             return dao.getAbo(c, l, s);
+        }
+
+        public Abonnement getAbonnement(Login l, Seizoen s)
+        {
+            return dao.getOfLoginInSeason(l, s);
+        }
+
+        public void buyAbonnement(Abonnement a)
+        {
+            dao.setAbonnement(a);
+        }
+
+        public List<Abonnement> getAllOfLogin(Login l)
+        {
+            return dao.getAllOfLogin(l);
         }
         
     }
