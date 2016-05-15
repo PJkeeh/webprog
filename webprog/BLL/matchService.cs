@@ -59,6 +59,9 @@ namespace webprog.BLL
 
         public List<int[]> getTicketsAvailable(Match m)
         {
+            SeizoenDAO seizoenDao = new SeizoenDAO();
+            Seizoen seizoen = seizoenDao.getByDate(m.date.Date);
+
             List<int[]> retVal = new List<int[]>();
 
             Ticket_teamDAO ticket_teamDAO = new Ticket_teamDAO();
@@ -68,7 +71,7 @@ namespace webprog.BLL
             List<Ticket> tickets = ticketDAO.getAllOfMatch(m);
 
             AbonnementDAO aboDAO = new AbonnementDAO();
-            List<Abonnement> abos = new List<Abonnement>();
+            List<Abonnement> abos = aboDAO.getAllOfTeam(m.homeTeam, seizoen);
 
             for (int i = 0; i < ticket_team.Count; i++)
             {
@@ -86,7 +89,6 @@ namespace webprog.BLL
                     if (abos.ElementAt(j).ticket_type.id == ticket_team.ElementAt(i).ticket_type.id)
                     {
                         sold++;
-                        break;
                     }
                 }
                 int[] a = { ticket_team.ElementAt(i).ticket_type.id, sold, total };
