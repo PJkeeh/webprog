@@ -12,5 +12,6 @@ namespace webprog.Domain
         public string name { get; set; }
 
         public Boolean hometeam { get; set; }
+        
     }
 }
