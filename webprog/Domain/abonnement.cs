@@ -16,6 +16,12 @@ namespace webprog.Domain
         public Seizoen seizoen { get; set; }
 
         public Ticket_type ticket_type { get; set; }
-        
+
+        public override string ToString()
+        {
+
+            return "("+seizoen.ToString() + ") - " + club.name + " - " + ticket_type.name;
+        }
+
     }
 }
