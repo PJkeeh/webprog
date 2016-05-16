@@ -30,6 +30,7 @@ h2 {
     color: #1f7872;
     font-family: 'Droid Serif', serif;
     font-weight: normal;
+    margin-bottom: 10px;
 }
 
 P {
@@ -45,23 +46,21 @@ a {
         color: #d13f31;
     }
 
-.content a{
-    text-decoration:underline;
-}
 /*
     GENERAL CLASSES
 */
-.content{
-    background-color:white;
+.content {
+    background-color: white;
     -webkit-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
     -moz-box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
     box-shadow: 10px 10px 25px 0px rgba(0,0,0,0.66);
-    margin:25px;
-    margin-left:0px;
-    padding:15px;
-    color:darkslategrey;
-    border:1px solid grey;
+    margin: 25px;
+    margin-left: 0px;
+    padding: 15px;
+    color: darkslategrey;
+    border: 1px solid grey;
 }
+
 .mar-top30 {
     margin-top: 30px;
 }
@@ -97,8 +96,6 @@ a {
 .title {
 }
 
-.content {
-}
 
 .button a {
     text-decoration: none;
@@ -211,19 +208,30 @@ a {
     CONTENT
 */
 
-.rightContent{
-    width:33%;
-    float:right;
+.rightContent {
+    width: 33%;
+    float: right;
 }
 
-.leftContent{
-    width:66%;
-    float:left;
+.leftContent {
+    width: 66%;
+    float: left;
 }
 
-.textContent{
-    margin-top:10px;
+.textContent {
+    margin-top: 10px;
 }
+
+.content {
+}
+
+    .content a {
+        text-decoration: underline;
+    }
+
+    .content h1 {
+        margin-bottom: 20px;
+    }
 
 /*
     REGISTER PAGE
@@ -240,7 +248,7 @@ a {
 /*
     Login Page
 */
-.loginWidth{
+.loginWidth {
     width: 70px;
-    display:inline-block;
+    display: inline-block;
 }
