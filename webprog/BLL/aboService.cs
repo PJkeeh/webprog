@@ -57,7 +57,18 @@ namespace webprog.BLL
 
         public void buyAbonnement(Abonnement a)
         {
+            List<Abonnement> before = dao.getAllOfLogin(a.login);
             dao.setAbonnement(a);
+            List<Abonnement> after = dao.getAllOfLogin(a.login);
+            Abonnement sold = after.Except(before).ToList()[0];
+
+            new SaleService().registerSale(new Sale
+            {
+                abonnement = sold,
+                saleDate = DateTime.Today,
+                ticket = null,
+                login = a.login
+            });
         }
 
         public List<Abonnement> getAllOfLogin(Login l)

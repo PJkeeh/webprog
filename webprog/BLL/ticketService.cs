@@ -51,12 +51,17 @@ namespace webprog.BLL
 
         public List<Ticket> buyTickets(List<Ticket> t)
         {
+            SaleService ss = new SaleService();
             Login login = t[0].login;
             List<Ticket> before = dao.getAllOfLogin(login.login.Trim());
             dao.setTicket(t);
             List<Ticket> after = dao.getAllOfLogin(login.login.Trim());
 
-            return after.Except(before).ToList();
+            List<Ticket> sold = after.Except(before).ToList();
+
+            ss.registerSales(sold);
+
+            return sold;
 
         }
 
