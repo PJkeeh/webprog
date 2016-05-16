@@ -58,69 +58,75 @@ namespace webprog
 
         protected void ticket_add_Click(object sender, EventArgs e)
         {
-            int wannaBuy = Convert.ToInt32(amount.Text);
+            int wannaBuy = 0;
+            if (Int32.TryParse(amount.Text, out wannaBuy))
+            {
 
-            Match m = new MatchService().getMatch(Convert.ToInt32(Request.QueryString["match"]));
-            Ticket_type tt = new TicketService().getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
+                Match m = new MatchService().getMatch(Convert.ToInt32(Request.QueryString["match"]));
+                Ticket_type tt = new TicketService().getTicket_type(Convert.ToInt32(Request.QueryString["ticket"]));
 
-            int available = new MatchService().getTicketsAvailableOfTicketType(m, tt)[1];
+                int available = new MatchService().getTicketsAvailableOfTicketType(m, tt)[1];
 
-            if (wannaBuy > maxBuy)
-            {
-                errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> ticket(s) kopen.";
-            }
-            else if (wannaBuy <= 0)
-            {
-                errorMessage.InnerHtml = "Geef een gelig getal in van 1 tot " + maxBuy;
-            }
-            else if (wannaBuy + numBought > maxBuy)
-            {
-                errorMessage.InnerHtml = "Je hebt al "
-                    + numBought + " ticket(s) gekocht. Als je nog "
-                    + wannaBuy + " ticket(s) bijkoopt, heb je "
-                    + (numBought + wannaBuy - maxBuy) + " ticket(s) teveel. Een persoon mag slechts <b>"
-                    + maxBuy + "</b> ticket(s) kopen.";
-            }
-            else if (available + wannaBuy > new MatchService().getTicketsAvailableOfTicketType(m, tt)[2])
-            {
-                errorMessage.InnerHtml = "Er zijn slechts " + available + " tickets beschikbaar.";
-            }
-            else
-            {
-                if (Session["shoppingCart"] == null)
+                if (wannaBuy > maxBuy)
                 {
-                    Session["shoppingCart"] = new List<Ticket>();
+                    errorMessage.InnerHtml = "Een persoon mag slechts <b>" + maxBuy + "</b> ticket(s) kopen.";
                 }
-
-                Login l = new LoginService().getLogin(getLogin());
-
-                List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
-
-                int toBuy = getOfMatch(shoppingCart, m).Count;
-
-                if (toBuy + wannaBuy + numBought <= maxBuy)
+                else if (wannaBuy <= 0)
                 {
-
-                    for (int i = 0; i < wannaBuy; i++)
+                    errorMessage.InnerHtml = "Geef een gelig getal in van 1 tot " + maxBuy;
+                }
+                else if (wannaBuy + numBought > maxBuy)
+                {
+                    errorMessage.InnerHtml = "Je hebt al "
+                        + numBought + " ticket(s) gekocht. Als je nog "
+                        + wannaBuy + " ticket(s) bijkoopt, heb je "
+                        + (numBought + wannaBuy - maxBuy) + " ticket(s) teveel. Een persoon mag slechts <b>"
+                        + maxBuy + "</b> ticket(s) kopen.";
+                }
+                else if (available + wannaBuy > new MatchService().getTicketsAvailableOfTicketType(m, tt)[2])
+                {
+                    errorMessage.InnerHtml = "Er zijn slechts " + available + " tickets beschikbaar.";
+                }
+                else
+                {
+                    if (Session["shoppingCart"] == null)
                     {
-                        shoppingCart.Add(new Ticket
-                        {
-                            id = 0,
-                            login = l,
-                            match = m,
-                            ticket_type = tt
-                        });
+                        Session["shoppingCart"] = new List<Ticket>();
                     }
 
-                    Response.Redirect("shoppingcart.aspx");
+                    Login l = new LoginService().getLogin(getLogin());
+
+                    List<Ticket> shoppingCart = (List<Ticket>)Session["shoppingCart"];
+
+                    int toBuy = getOfMatch(shoppingCart, m).Count;
+
+                    if (toBuy + wannaBuy + numBought <= maxBuy)
+                    {
+
+                        for (int i = 0; i < wannaBuy; i++)
+                        {
+                            shoppingCart.Add(new Ticket
+                            {
+                                id = 0,
+                                login = l,
+                                match = m,
+                                ticket_type = tt
+                            });
+                        }
+
+                        Response.Redirect("shoppingcart.aspx");
+                    }
+                    else {
+                        errorMessage.InnerHtml = "Je hebt al "
+                            + numBought + " ticket(s) gekocht voor deze match. Momenteel bevinden zich al "
+                            + toBuy + " ticket(s) in je winkelwagen. Bij het aankopen van nog "
+                            + wannaBuy + " ticket(s) wordt het maximum van "
+                            + maxBuy + " per match overschreden.";
+                    }
                 }
-                else {
-                    errorMessage.InnerHtml = "Je hebt al "
-                        + numBought + " ticket(s) gekocht voor deze match. Momenteel bevinden zich al "
-                        + toBuy + " ticket(s) in je winkelwagen. Bij het aankopen van nog "
-                        + wannaBuy + " ticket(s) wordt het maximum van "
-                        + maxBuy + " per match overschreden.";
-                }
+            } else
+            {
+                errorMessage.InnerHtml = "Geef een geldig getal op.";
             }
         }
 
