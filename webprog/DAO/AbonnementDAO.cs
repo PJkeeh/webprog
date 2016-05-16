@@ -267,6 +267,38 @@ namespace webprog.DAO
                 reader.Close();
             }
         }
+        public Abonnement getAbo(int id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Abonnement retVal = null;
+
+            string strSQL = "SELECT * FROM abonnement where abo_id=@id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal = CreateAbonnement(reader); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                cnn.Close();
+                reader.Close();
+            }
+        }
 
         public Abonnement getAllAbo(Club c, Login l)
         {
