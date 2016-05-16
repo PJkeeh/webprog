@@ -26,7 +26,7 @@
         </ul>
 
         <ul  runat="server" id="login">
-            <li><a href="updatePassword.aspx">Account</a></li>
+            <li><a href="account.aspx">Account</a></li>
             <li><a href="logout.aspx">Log uit</a></li>
 
         </ul>
