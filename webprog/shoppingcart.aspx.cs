@@ -206,14 +206,7 @@ namespace webprog
 
             if(Session["abo_cart"] != null)
             {
-                Abonnement abo = (Abonnement)Session["abo_cart"];
-                AboService aboservice = new AboService();
-                if (aboservice.getAbonnement(login, abo.seizoen) == null)
-                {
-                    aboservice.buyAbonnement(abo);
-                    send_mail(login, abo);
-                    Session["abo_cart"] = null;
-                }
+                buy_abonnement(login);
             }
             Response.Redirect(Request.Path);
         }
@@ -286,6 +279,17 @@ namespace webprog
                 return t.buyTickets(shoppingCart);
             }
             return null;
+        }
+        private void buy_abonnement(Login login)
+        {
+            Abonnement abo = (Abonnement)Session["abo_cart"];
+            AboService aboservice = new AboService();
+            if (aboservice.getAbonnement(login, abo.seizoen) == null)
+            {
+                aboservice.buyAbonnement(abo);
+                send_mail(login, abo);
+                Session["abo_cart"] = null;
+            }
         }
     }
 }
