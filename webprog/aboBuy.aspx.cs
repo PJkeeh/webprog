@@ -62,10 +62,12 @@ namespace webprog
 
                                 AboService aboService = new AboService();
                                 Abonnement abo = aboService.getAbonnement(login, next_seizoen);
-
-                                if (abo != null || Session["abo_cart"] != null)
+                                
+                                if (abo != null )
                                 {
                                     available_abo.InnerHtml = "<p>Je hebt al een abonnement gekocht voor " + abo.club.name + " (" + abo.seizoen + ")";
+                                } else if (Session["abo_cart"] != null){
+                                    available_abo.InnerHtml = "<p>Er bevind zich al een abonnement in je winkelwagentje.</p>";
                                 }
                                 else
                                 {
