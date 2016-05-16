@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="abonnement.aspx" />
     <Content Include="aboBuy.aspx" />
+    <Content Include="account.aspx" />
     <Content Include="calendar.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="deleteShopping.aspx" />
@@ -121,8 +122,16 @@
     <Compile Include="aboBuy.aspx.designer.cs">
       <DependentUpon>aboBuy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="account.aspx.cs">
+      <DependentUpon>account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="account.aspx.designer.cs">
+      <DependentUpon>account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BLL\matchService.cs" />
     <Compile Include="BLL\loginService.cs" />
+    <Compile Include="BLL\saleService.cs" />
     <Compile Include="BLL\seizoenService.cs" />
     <Compile Include="BLL\stadionService.cs" />
     <Compile Include="BLL\aboService.cs" />
@@ -134,9 +143,10 @@
     <Compile Include="calendar.aspx.designer.cs">
       <DependentUpon>calendar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DAO\AbonnementDAO.cs" />
+    <Compile Include="DAO\abonnementDAO.cs" />
     <Compile Include="DAO\matchDAO.cs" />
     <Compile Include="DAO\loginDAO.cs" />
+    <Compile Include="DAO\saleDAO.cs" />
     <Compile Include="DAO\seizoenDAO.cs" />
     <Compile Include="DAO\stadionDAO.cs" />
     <Compile Include="DAO\ticketDAO.cs" />
@@ -152,6 +162,7 @@
     <Compile Include="Domain\abonnement.cs" />
     <Compile Include="Domain\login.cs" />
     <Compile Include="Domain\match.cs" />
+    <Compile Include="Domain\Sale.cs" />
     <Compile Include="Domain\Seizoen.cs" />
     <Compile Include="Domain\ticket.cs" />
     <Compile Include="Domain\stadion.cs" />
