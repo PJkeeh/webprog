@@ -21,9 +21,10 @@ namespace webprog.Domain
 
         public String toString { get; set; } //Used in DropDownList
 
-        public void updateToString()
+        public string updateToString()
         {
             toString = ToString();
+            return toString;
         }
     }
 }
