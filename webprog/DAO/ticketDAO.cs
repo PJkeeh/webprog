@@ -14,12 +14,44 @@ namespace webprog.DAO
         private SqlConnection cnn;
         SqlDataReader reader;
 
+        public Ticket get(int id)
+        {
+            cnn = new SqlConnection(dbLoc);
+            Ticket retVal = null;
+
+            string strSQL = "SELECT * FROM ticket where ticket_id = @ticket_id;";
+
+            SqlCommand com = new SqlCommand(strSQL, cnn);
+            com.Parameters.AddWithValue("@ticket_id", id);
+
+            try
+            {
+                cnn.Open();
+                reader = com.ExecuteReader();
+
+                // Call Read before accessing data
+                while (reader.Read())
+                { retVal=CreateTicket(reader); }
+
+                // Call close when done reading
+                return retVal;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Something went wrong ", ex);
+            }
+            finally
+            {
+                reader.Close();
+                cnn.Close();
+            }
+        }
+
         public List<Ticket> getAllOfMatch(Match m)
         {
             return getAllOfMatch(m.id);
         }
-
-        public List<Ticket> getAllOfMatch(int id)
+        public List<Ticket> getAllOfMatch(int match_id)
         {
             cnn = new SqlConnection(dbLoc);
             List<Ticket> retVal = new List<Ticket>();
@@ -27,7 +59,7 @@ namespace webprog.DAO
             string strSQL = "SELECT * FROM ticket where match_id = @match_id;";
 
             SqlCommand com = new SqlCommand(strSQL, cnn);
-            com.Parameters.AddWithValue("@match_id", id);
+            com.Parameters.AddWithValue("@match_id", match_id);
 
             try
             {
@@ -123,7 +155,6 @@ namespace webprog.DAO
         {
             return getAllOfLoginFromMatch(username, m.id);
         }
-
         public List<Ticket> getAllOfLoginFromMatch(string username, int match_id)
         {
             cnn = new SqlConnection(dbLoc);
