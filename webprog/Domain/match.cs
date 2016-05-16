@@ -14,7 +14,7 @@ namespace webprog.Domain
 
         public override string ToString()
         {
-            return id.ToString() + " " + homeTeam.name + " - " + awayTeam.name + " " + date.ToString();
+            return homeTeam.name + " - " + awayTeam.name + " " + string.Format("{0:dd-MM-yyyy}", date.Date);
         }
     }
 }
