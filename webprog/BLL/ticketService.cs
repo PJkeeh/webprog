@@ -56,12 +56,22 @@ namespace webprog.BLL
             List<Ticket> before = dao.getAllOfLogin(login.login.Trim());
             dao.setTicket(t);
             List<Ticket> after = dao.getAllOfLogin(login.login.Trim());
+            
+            for (int i = after.Count -1; i!=-1; i--)
+            {
+                for(int j = 0; j < before.Count; j++)
+                {
+                    if (after[i].id == before[j].id)
+                    {
+                        after.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
 
-            List<Ticket> sold = after.Except(before).ToList();
+            ss.registerSales(after);
 
-            ss.registerSales(sold);
-
-            return sold;
+            return after;
 
         }
 
