@@ -30,7 +30,6 @@ h2 {
     color: #1f7872;
     font-family: 'Droid Serif', serif;
     font-weight: normal;
-    margin-bottom: 10px;
 }
 
 P {
@@ -229,9 +228,6 @@ a {
         text-decoration: underline;
     }
 
-    .content h1 {
-        margin-bottom: 20px;
-    }
 
 /*
     REGISTER PAGE
