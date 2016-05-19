@@ -199,7 +199,7 @@ namespace webprog
                 if (allowedToBuy(shoppingCart) == null)
                 {
                     List<Ticket> bought = buy_tickets();
-                    send_mail(login, bought);
+                   send_mail(login, bought);
                     Session["shoppingCart"] = null;
                 }
             }
@@ -208,7 +208,7 @@ namespace webprog
             {
                 buy_abonnement(login);
             }
-            Response.Redirect(Request.Path);
+            Response.Redirect("account.aspx");
         }
 
         private void send_mail(Domain.Login login, List<Ticket> t)
